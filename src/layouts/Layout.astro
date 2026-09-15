@@ -1,0 +1,23 @@
+---
+import Navbar from '../components/Navbar.astro';
+---
+
+<!-- 
+    This is the layout page for the website. Content placed here will be displayed on every page of the website.
+    The <slot /> tag is used to display the content of the page that uses this layout.
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Akshaan Singh's Portfolio Website</title>
+	</head>
+	<body>
+        <Navbar />
+        <slot />
+	</body>
+</html>
