@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from '../components/Navbar.astro';
+import Scanlines from '../components/stylization/Scanlines.astro';
 ---
 
 <!-- 
@@ -8,7 +9,7 @@ import Navbar from '../components/Navbar.astro';
     The <slot /> tag is used to display the content of the page that uses this layout.
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-scrollbar">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,7 +18,8 @@ import Navbar from '../components/Navbar.astro';
 		<meta name="generator" content={Astro.generator} />
 		<title>Akshaan Singh's Portfolio Website</title>
 	</head>
-	<body>
+	<body class="no-scrollbar">
+		<Scanlines />
         <Navbar />
         <slot />
 	</body>
