@@ -6,14 +6,13 @@
 /*Global Variables for better design language*/
 :root {
     /*Global Colors*/
-    --bg: #070b14;
-    --grid: #18243a;
-    --scanlines: rgba(120, 200, 255, 0.08);
-    --accent: #00e5ff;
-
+    --bg: linear-gradient(to bottom, #000000, #0E001B);
+    --grid: #13003F;
+    --scanlines: rgba(168, 85, 247, 0.10);
+    --primary: #8B3DFF;
+    --secondary: #FFE600;
     --danger: #ff3b5c;
-
-    --text: #e0e0e0;
+    --text: #F4EEFF;
 
 
     /*Global Fonts*/
@@ -22,7 +21,7 @@
 
 
     /*Global Font Sizes*/
-    --font-size-heading: 4rem;
+    --font-size-heading: 5rem;
     --font-size-subheading: 2rem;
     --font-size-nav: 1.25rem;
     --font-size-main: 1rem;
@@ -52,10 +51,10 @@
 
     height: 1px;
 
-    background: rgba(120, 200, 255, 0.6);
+    background: rgba(168, 85, 247, 0.6);
     box-shadow:
-        0 0 8px rgba(106, 194, 253, 0.11),
-        0 0 20px rgba(122, 202, 255, 0.199);
+        0 0 8px rgba(125, 60, 185, 0.11),
+        0 0 20px rgba(168, 85, 247, 0.199);
 
     animation: scanline 4s linear infinite;
 }
@@ -84,7 +83,7 @@
 
 /*Main body of the website*/
 body {
-    background-color: var(--bg);
+    background-image: var(--bg);
     color: var(--text);
     font-family: var(--font-main);
     font-size: var(--font-size-main);
@@ -105,10 +104,4 @@ body::before {
 
     pointer-events: none;
     z-index: -1;
-}
-
-h1 {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-heading);
-    font-weight: bold;
 }

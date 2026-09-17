@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  size?: string;
+}
+
+const { class: className = "", size = "h-10 w-10" } = Astro.props;
+---
+
+<div class:list={["relative", size, className]} aria-hidden="true">
+  <span
+    class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[var(--primary)] opacity-60"
+  ></span>
+
+  <span
+    class="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-[var(--primary)] opacity-60"
+  ></span>
+</div>

@@ -3,22 +3,20 @@
 ---
 
 <nav
-  data-augmented-ui="br-2-clip-y bl-clip-x border"
-  class="hidden md:flex justify-center items-center w-full"
+  class="hidden md:flex justify-center items-center w-full text-shadow-md"
 >
   <div>
     <ul class="flex flex-wrap justify-center gap-x-4 gap-y-1 px-4 py-3">
-      <li><a href="#home">01/[HOME]</a></li>
-      <li><a href="#projects">02/[PROJECTS]</a></li>
-      <li><a href="#about">03/[ABOUT]</a></li>
-      <li><a href="#skills">04/[SKILLS]</a></li>
-      <li><a href="#contact">05/[CONTACT]</a></li>
+      <li><a href="#home">//HOME</a></li>
+      <li><a href="#projects">//PROJECTS</a></li>
+      <li><a href="#about">//ABOUT</a></li>
+      <li><a href="#skills">//SKILLS</a></li>
+      <li><a href="#contact">//CONTACT</a></li>
     </ul>
   </div>
 </nav>
 
 <nav
-  data-augmented-ui="tl-clip t-rect-x br-clip-x border"
   class="medium-menu flex md:hidden p-5 justify-center items-center w-full"
 >
   SYSTEM // ONLINE
@@ -30,16 +28,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    font-family: var(--font-heading);
+    z-index: 60;
+    font-family: var(--font-main);
     font-size: var(--font-size-nav);
-    font-weight: bold;
-
-    --aug-border-all: 1px;
-    --aug-border-bg: var(--accent);
-
-    background: rgba(11, 7, 18, 0.9);
-    --aug-inlay-all: 1px;
-    --aug-inlay-bg: rgba(0, 229, 255, 0.15);
+    font-weight: 500;
   }
 
   .medium-menu {

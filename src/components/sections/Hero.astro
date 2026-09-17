@@ -1,14 +1,61 @@
 ---
-
+import PlusDecoration from "../stylization/Plus.astro";
 ---
 
-<div id="home">
-  <h1>AKSHAAN SINGH</h1>
-  <h3>Full Stack Engineer</h3>
+<div
+  id="home"
+  class="min-h-screen bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
+>
+  <div
+    class="relative flex min-h-screen flex-col items-start justify-end box-border bg-linear-to-r from-black to-transparent p-16"
+  >
+    <h1>AKSHAAN<br />SINGH</h1>
+    <h3>// FULL STACK ENGINEER</h3>
+    <h2 class="portfolio-lg">PORTFOLIO</h2>
+    <h2 class="portfolio-mid">PORTFOLIO</h2>
+    <h2 class="akshaan-singh">AKSHAAN SINGH</h2>
+  </div>
 </div>
 
 <style>
-  #home {
-    padding-top: 4rem;
+  h1 {
+    color: var(--secondary);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-heading);
+    font-weight: bold;
+  }
+
+  h3 {
+    color: var(--text);
+    font-size: var(--font-size-subheading);
+    font-family: var(--font-heading);
+    font-weight: bold;
+  }
+
+  h2 {
+    position: absolute;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .portfolio-lg {
+    font-size: 12rem;
+    top: -800px;
+    right: -50px;
+    opacity: 30%;
+  }
+
+  .portfolio-mid {
+    font-size: 4rem;
+    top: 20px;
+    right: 20px;
+  }
+
+  .akshaan-singh {
+    font-size: 2rem;
+    top: 20px;
+    right: 100px;
   }
 </style>
