@@ -9,27 +9,30 @@ import PlusDecoration from "../stylization/Plus.astro";
   <div
     class="relative flex min-h-screen flex-col items-start justify-end box-border bg-linear-to-r from-black to-transparent p-16"
   >
-    <h1>AKSHAAN<br />SINGH</h1>
-    <h3>// FULL STACK ENGINEER</h3>
-    <h2 class="portfolio-lg">PORTFOLIO</h2>
-    <h2 class="portfolio-mid">PORTFOLIO</h2>
-    <h2 class="akshaan-singh">AKSHAAN SINGH</h2>
+    <h1 class="font-bold text-(--secondary) text-(length:--font-size-heading)">
+      AKSHAAN<br />SINGH
+    </h1>
+    <h3 class="font-bold text-(--text) text-(length:--font-size-subheading)">
+      // FULL STACK ENGINEER
+    </h3>
+    <h2 class="text-[12rem] -top-190 -right-16 opacity-30">PORTFOLIO</h2>
+    <h2 class="text-[4rem] top-5 right-5">PORTFOLIO</h2>
+    <h2 class="text-[2rem] top-5 right-25">AKSHAAN SINGH</h2>
+
+    <PlusDecoration top={50} left={65} size={20} />
+    <PlusDecoration top={50} left={90} size={20} />
+    <PlusDecoration top={50} left={115} size={20} />
+    <PlusDecoration top={50} left={140} size={20} />
+    <PlusDecoration top={75} left={65} size={20} />
+    <PlusDecoration top={75} left={90} size={20} />
+    <PlusDecoration top={75} left={115} size={20} />
   </div>
 </div>
 
 <style>
-  h1 {
-    color: var(--secondary);
-    font-family: var(--font-heading);
-    font-size: var(--font-size-heading);
-    font-weight: bold;
-  }
-
+  h1,
   h3 {
-    color: var(--text);
-    font-size: var(--font-size-subheading);
     font-family: var(--font-heading);
-    font-weight: bold;
   }
 
   h2 {
@@ -38,24 +41,5 @@ import PlusDecoration from "../stylization/Plus.astro";
     font-weight: bold;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-  }
-
-  .portfolio-lg {
-    font-size: 12rem;
-    top: -800px;
-    right: -50px;
-    opacity: 30%;
-  }
-
-  .portfolio-mid {
-    font-size: 4rem;
-    top: 20px;
-    right: 20px;
-  }
-
-  .akshaan-singh {
-    font-size: 2rem;
-    top: 20px;
-    right: 100px;
   }
 </style>

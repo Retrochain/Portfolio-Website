@@ -1,18 +1,24 @@
 ---
-interface Props {
-  class?: string;
-  size?: string;
-}
+// This is a customizable plus decoration that can be plopped anywhere on the website
+// It takes the position and size (by default 24) and creates an appropriate plus there
+const { top, right, bottom, left, size = 24 } = Astro.props;
 
-const { class: className = "", size = "h-10 w-10" } = Astro.props;
+// Here we define the position and size of the plus depending on the user's parameters
+const style = {
+  top: top !== undefined ? `${top}px` : undefined,
+  right: right !== undefined ? `${right}px` : undefined,
+  bottom: bottom !== undefined ? `${bottom}px` : undefined,
+  left: left !== undefined ? `${left}px` : undefined,
+  width: `${size}px`,
+  height: `${size}px`,
+};
 ---
 
-<div class:list={["relative", size, className]} aria-hidden="true">
-  <span
-    class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[var(--primary)] opacity-60"
-  ></span>
-
-  <span
-    class="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-[var(--primary)] opacity-60"
-  ></span>
+<!-- We then use the style and absolute positioning to create a plus -->
+<div
+  class="pointer-events-none absolute flex items-center justify-center"
+  style={style}
+>
+  <div class="absolute h-px w-full bg-(--primary)"></div>
+  <div class="absolute h-full w-px bg-(--primary)"></div>
 </div>

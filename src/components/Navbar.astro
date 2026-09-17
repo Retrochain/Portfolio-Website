@@ -3,7 +3,7 @@
 ---
 
 <nav
-  class="hidden md:flex justify-center items-center w-full text-shadow-md"
+  class="hidden md:flex fixed top-0 left-0 z-60 text-(length:--font-size-nav) font-semibold justify-center items-center w-full text-shadow-md"
 >
   <div>
     <ul class="flex flex-wrap justify-center gap-x-4 gap-y-1 px-4 py-3">
@@ -16,25 +16,12 @@
   </div>
 </nav>
 
-<nav
-  class="medium-menu flex md:hidden p-5 justify-center items-center w-full"
->
+<nav class="text-[1rem] flex md:hidden p-5 justify-center items-center w-full">
   SYSTEM // ONLINE
 </nav>
 
 <style>
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 60;
     font-family: var(--font-main);
-    font-size: var(--font-size-nav);
-    font-weight: 500;
-  }
-
-  .medium-menu {
-    font-size: 1rem;
   }
 </style>
