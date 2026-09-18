@@ -4,13 +4,16 @@ import ContentBox from "../stylization/ContentBox.astro";
 import Barcode from "../stylization/Barcode.astro";
 ---
 
+<!-- This is the main hero page, aka the landing page --><!-- We first cover the visible screen with a picture -->
 <div
   id="home"
   class="min-h-screen bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
 >
+  <!-- We then cover the picture with a box with a linear gradient -->
   <div
     class="relative box-border flex min-h-screen flex-col items-start justify-end bg-linear-to-r from-black to-black/55 p-3 pb-18 md:p-16"
   >
+    <!-- Using a custom component we can create a box to display some text -->
     <ContentBox
       top={20}
       left={20}
@@ -21,6 +24,7 @@ import Barcode from "../stylization/Barcode.astro";
         "\nDAEMON...........40%"}
     />
 
+    <!-- Another customer component to place some pluses -->
     <PlusDecoration top={20} left={180} size={20} />
     <PlusDecoration top={20} left={205} size={20} />
     <PlusDecoration top={20} left={230} size={20} />
@@ -39,70 +43,124 @@ import Barcode from "../stylization/Barcode.astro";
     <PlusDecoration top={70} right={230} size={20} />
     <PlusDecoration top={95} right={205} size={20} />
 
+    <!-- We create some lines for filler -->
     <div
       class="absolute h-px bg-(--primary) pointer-events-none flex items-center justify-center top-46 left-5 w-50"
     >
     </div>
-
-    <Barcode top={230} left={-10} rotated={true} />
-
     <div
-      class="absolute h-40 bg-(--primary) pointer-events-none flex items-center justify-center top-90 left-10 w-px"
+      class="absolute h-40 bg-(--primary) pointer-events-none flex items-center justify-center top-90 left-10 w-px 2xl:h-85"
+    >
+    </div>
+    <div
+      class="absolute h-30 bg-(--primary) pointer-events-none flex items-center justify-center top-48 left-16 w-px"
+    >
+    </div>
+    <div
+      class="absolute h-20 bg-(--primary) pointer-events-none flex items-center justify-center top-58 left-18 w-px"
+    >
+    </div>
+    <div
+      class="absolute h-14 bg-(--primary) pointer-events-none flex items-center justify-center top-48 left-20 w-px"
     >
     </div>
 
+    <!-- A custom component that generates a barcode -->
+    <Barcode top={230} left={-10} rotated={true} />
+
+    <!-- Two navigators to point downwards -->
+    <a
+      class="absolute w-2 h-8 [clip-path:polygon(0%_0%,100%_0%,100%_50%,50%_100%,0%_50%)] top-78 left-9 bg-(--secondary)"
+      href="#projects"
+    >
+    </a>
+    <a
+      class="absolute w-2 h-8 z-2 [clip-path:polygon(0%_0%,100%_0%,100%_50%,50%_100%,0%_50%)] top-78 right-5 bg-(--secondary)"
+      href="#projects"
+    >
+    </a>
+
+    <!-- Using divs we create some squares for UI -->
+    <div
+      class="absolute w-4 h-4 aspect-square bottom-16 2xl:bottom-50 right-8 bg-(--primary)"
+    >
+    </div>
+    <div
+      class="absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-13"
+    >
+    </div>
+    <div
+      class="absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) bottom-16 2xl:bottom-50 right-18"
+    >
+    </div>
+    <div
+      class="absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) bottom-16 2xl:bottom-50 right-23 flex items-center justify-center"
+    >
+      <div class="size-1 bg-(--primary) rounded-full"></div>
+    </div>
+    <div
+      class="absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-28 flex items-center justify-center"
+    >
+      <div class="size-1 bg-(--primary) rounded-full"></div>
+    </div>
+
+    <!-- A div containing a gradient of infinite 1px circles -->
+    <div
+      class="absolute left-80 2xl:left-120 w-1/4 h-16 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[8px_8px]"
+    >
+    </div>
+
+    <!-- The text being displayed on the hero page -->
     <h1
-      class="font-bold leading-[0.95] text-(--secondary) text-[2.5rem] md:text-[3.5rem] lg:text-(length:--font-size-heading) 2xl:text-[7rem]"
+      class="font-bold leading-[0.95] z-4 text-(--secondary) text-[2.5rem] md:text-[3.5rem] lg:text-(length:--font-size-heading) 2xl:text-[7rem]"
     >
       AKSHAAN<br />SINGH
     </h1>
-
     <h3
-      class="font-bold text-[1.25rem] text-(--text) md:text-(length:--font-size-subheading) 2xl:text-[3rem]"
+      class="font-bold text-[1.25rem] z-4 text-(--text) md:text-(length:--font-size-subheading) 2xl:text-[3rem]"
     >
       // FULL STACK ENGINEER
     </h3>
-
     <h2
-      class="-top-200 -right-16 text-[6rem] opacity-20 md:block md:text-[12rem]"
+      class="select-none -top-200 -right-16 text-[6rem] opacity-20 md:block md:text-[12rem]"
     >
       PORTFOLIO
     </h2>
-
-    <h2 class="top-15 right-5 text-[2rem] md:top-5 md:right-5 md:text-[4rem]">
+    <h2 class="select-none top-15 right-5 text-[2rem] md:top-5 md:right-5 md:text-[4rem]">
       PORTFOLIO
     </h2>
-
-    <h2 class="top-15 right-15 text-[1rem] md:top-5 md:right-25 md:text-[2rem]">
+    <h2 class="select-none top-15 right-15 text-[1rem] md:top-5 md:right-25 md:text-[2rem]">
       AKSHAAN SINGH
     </h2>
+
+    <!-- Some filler text to be displayed as part of the UI -->
     <div
-      class="sys-box pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) font-extrabold text-xl bottom-40 right-40 2xl:right-10"
+      class="pointer-events-none absolute text-(--primary) font-extrabold text-xl bottom-40 right-40 2xl:right-10"
     >
       SYS//ON
     </div>
     <div
-      class="sys-box pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) font-extrabold text-lg bottom-35 right-40 2xl:right-10"
+      class="pointer-events-none absolute text-(--primary) font-extrabold text-lg bottom-35 right-40 2xl:right-10"
     >
       20.77.26
     </div>
     <div
-      class="sys-box pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) font-extrabold text-md bottom-30 right-40 2xl:right-10"
+      class="pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-30 right-40 2xl:right-10"
     >
       DIAGNOSTICS RUN
     </div>
     <div
-      class="sys-box pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) font-extrabold text-md bottom-25 right-40 2xl:right-10"
+      class="pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-25 right-40 2xl:right-10"
     >
       RENDER POSITIVE
     </div>
     <div
-      class="sys-box pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) font-extrabold text-md bottom-20 right-40 2xl:right-10"
+      class="pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-20 right-40 2xl:right-10"
     >
       TERMINAL ONLINE
     </div>
     <div
-      class="sys-box pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) font-extrabold text-md bottom-15 right-40 2xl:right-10"
+      class="sys-box pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-15 right-40 2xl:right-10"
     >
       CPU CHECKED
     </div>
