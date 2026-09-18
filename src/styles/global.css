@@ -21,8 +21,9 @@
 
 
     /*Global Font Sizes*/
-    --font-size-heading: 5rem;
-    --font-size-subheading: 2rem;
+    /* set min/max to your current mobile and 2xl values */
+    --font-size-heading: clamp(3rem, 1.5rem + 4.5vw, 7rem);
+    --font-size-subheading: clamp(1.5rem, 1rem + 1.5vw, 3rem);
     --font-size-nav: 1.25rem;
     --font-size-main: 1rem;
 }

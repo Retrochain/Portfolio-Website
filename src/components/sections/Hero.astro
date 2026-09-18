@@ -7,41 +7,57 @@ import Barcode from "../stylization/Barcode.astro";
 <!-- This is the main hero page, aka the landing page --><!-- We first cover the visible screen with a picture -->
 <div
   id="home"
-  class="min-h-screen bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
+  class="w-full min-h-[max(100svh,46rem)] overflow-x-hidden bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
 >
   <!-- We then cover the picture with a box with a linear gradient -->
   <div
-    class="relative box-border flex min-h-screen flex-col items-start justify-end bg-linear-to-r from-black to-black/55 p-3 pb-18 md:p-16"
+    class="relative box-border flex w-full min-h-screen flex-col items-start justify-end bg-linear-to-r from-black to-black/55 p-3 pb-18 md:p-16"
   >
     <!-- Using a custom component we can create a box to display some text -->
-    <ContentBox
-      top={20}
-      left={20}
-      barcode={true}
-      text={"SYS LVL.............70%" +
-        "\nSTATS................20%" +
-        "\nCOOLING LVL...30%" +
-        "\nDAEMON...........40%"}
-    />
+    <!-- Desktop Version -->
+    <div class="hidden lg:block">
+      <ContentBox
+        top={20}
+        left={20}
+        barcode={true}
+        text={"SYS LVL.............70%" +
+          "\nSTATS................20%" +
+          "\nCOOLING LVL...30%" +
+          "\nDAEMON...........40%"}
+      />
 
-    <!-- Another customer component to place some pluses -->
-    <PlusDecoration top={20} left={180} size={20} />
-    <PlusDecoration top={20} left={205} size={20} />
-    <PlusDecoration top={20} left={230} size={20} />
-    <PlusDecoration top={20} left={255} size={20} />
-    <PlusDecoration top={45} left={180} size={20} />
-    <PlusDecoration top={45} left={205} size={20} />
-    <PlusDecoration top={45} left={230} size={20} />
+      <!-- Another customer component to place some pluses -->
+      <PlusDecoration top={20} left={180} size={20} />
+      <PlusDecoration top={20} left={205} size={20} />
+      <PlusDecoration top={20} left={230} size={20} />
+      <PlusDecoration top={20} left={255} size={20} />
+      <PlusDecoration top={45} left={180} size={20} />
+      <PlusDecoration top={45} left={205} size={20} />
+      <PlusDecoration top={45} left={230} size={20} />
 
-    <PlusDecoration top={20} right={180} size={20} />
-    <PlusDecoration top={20} right={205} size={20} />
-    <PlusDecoration top={20} right={230} size={20} />
-    <PlusDecoration top={45} right={180} size={20} />
-    <PlusDecoration top={45} right={205} size={20} />
-    <PlusDecoration top={45} right={230} size={20} />
-    <PlusDecoration top={70} right={205} size={20} />
-    <PlusDecoration top={70} right={230} size={20} />
-    <PlusDecoration top={95} right={205} size={20} />
+      <PlusDecoration top={20} right={180} size={20} />
+      <PlusDecoration top={20} right={205} size={20} />
+      <PlusDecoration top={20} right={230} size={20} />
+      <PlusDecoration top={45} right={180} size={20} />
+      <PlusDecoration top={45} right={205} size={20} />
+      <PlusDecoration top={45} right={230} size={20} />
+      <PlusDecoration top={70} right={205} size={20} />
+      <PlusDecoration top={70} right={230} size={20} />
+      <PlusDecoration top={95} right={205} size={20} />
+    </div>
+
+    <!-- Mobile Version -->
+    <div class="block lg:hidden">
+      <ContentBox
+        top={20}
+        left={20}
+        barcode={true}
+        text={"SYS LVL.............70%" +
+          "\nSTATS................20%" +
+          "\nCOOLING LVL...30%" +
+          "\nDAEMON...........40%"}
+      />
+    </div>
 
     <!-- We create some lines for filler -->
     <div
@@ -49,138 +65,181 @@ import Barcode from "../stylization/Barcode.astro";
     >
     </div>
     <div
-      class="absolute h-40 bg-(--primary) pointer-events-none flex items-center justify-center top-90 left-10 w-px 2xl:h-85"
+      class="absolute md:block hidden h-40 bg-(--primary) pointer-events-none items-center justify-center top-90 left-10 w-px 2xl:h-85"
     >
     </div>
     <div
-      class="absolute h-30 bg-(--primary) pointer-events-none flex items-center justify-center top-48 left-16 w-px"
+      class="absolute md:block hidden h-30 bg-(--primary) pointer-events-none items-center justify-center top-48 left-16 w-px"
     >
     </div>
     <div
-      class="absolute h-20 bg-(--primary) pointer-events-none flex items-center justify-center top-58 left-18 w-px"
+      class="absolute md:block hidden h-20 bg-(--primary) pointer-events-none items-center justify-center top-58 left-18 w-px"
     >
     </div>
     <div
-      class="absolute h-14 bg-(--primary) pointer-events-none flex items-center justify-center top-48 left-20 w-px"
+      class="absolute md:h-14 h-30 bg-(--primary) pointer-events-none items-center justify-center top-25 left-45 md:top-48 md:left-20 w-px"
     >
     </div>
 
     <!-- A custom component that generates a barcode -->
-    <Barcode top={230} left={-10} rotated={true} />
+    <div class="md:block hidden">
+      <Barcode top={230} left={-10} rotated={true} />
+    </div>
 
     <!-- Two navigators to point downwards -->
     <a
-      class="absolute w-2 h-8 [clip-path:polygon(0%_0%,100%_0%,100%_50%,50%_100%,0%_50%)] top-78 left-9 bg-(--secondary)"
+      class="md:block hidden absolute w-2 h-8 [clip-path:polygon(0%_0%,100%_0%,100%_50%,50%_100%,0%_50%)] top-78 left-9 bg-(--secondary)"
       href="#projects"
     >
     </a>
     <a
-      class="absolute w-2 h-8 z-2 [clip-path:polygon(0%_0%,100%_0%,100%_50%,50%_100%,0%_50%)] top-78 right-5 bg-(--secondary)"
+      class="md:block hidden absolute w-2 h-8 z-2 [clip-path:polygon(0%_0%,100%_0%,100%_50%,50%_100%,0%_50%)] top-78 right-5 bg-(--secondary)"
       href="#projects"
     >
     </a>
 
     <!-- Using divs we create some squares for UI -->
     <div
-      class="absolute w-4 h-4 aspect-square bottom-16 2xl:bottom-50 right-8 bg-(--primary)"
+      class="hidden lg:block absolute w-4 h-4 aspect-square bottom-16 2xl:bottom-50 right-8 bg-(--primary)"
     >
     </div>
     <div
-      class="absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-13"
+      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-(--primary) 
+      bottom-16 2xl:bottom-50 right-13"
     >
     </div>
     <div
-      class="absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) bottom-16 2xl:bottom-50 right-18"
+      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) 
+      bottom-16 2xl:bottom-50 right-18"
     >
     </div>
     <div
-      class="absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) bottom-16 2xl:bottom-50 right-23 flex items-center justify-center"
+      class="hidden absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) 
+      bottom-16 2xl:bottom-50 right-23 lg:flex items-center justify-center"
     >
       <div class="size-1 bg-(--primary) rounded-full"></div>
     </div>
     <div
-      class="absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-28 flex items-center justify-center"
+      class="hidden absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-28 
+      lg:flex items-center justify-center"
     >
       <div class="size-1 bg-(--primary) rounded-full"></div>
     </div>
 
     <!-- A div containing a gradient of infinite 1px circles -->
     <div
-      class="absolute left-80 2xl:left-120 w-1/4 h-16 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[8px_8px]"
+      class="absolute left-5 bottom-20 md:bottom-10 md:left-80 2xl:left-120 w-12/13 h-38
+      bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[30px_30px]
+      md:w-1/4 md:h-16 md:bg-[radial-gradient(var(--primary)_1px,transparent_1px)] md:bg-size-[8px_8px]"
     >
     </div>
 
     <!-- The text being displayed on the hero page -->
     <h1
-      class="font-bold leading-[0.95] z-4 text-(--secondary) text-[2.5rem] md:text-[3.5rem] lg:text-(length:--font-size-heading) 2xl:text-[7rem]"
+      class="font-bold leading-[0.95] z-4 text-(--secondary) pb-2 pl-2 md:p-0 
+      text-[3rem] md:text-[3.5rem] lg:text-(length:--font-size-heading) 2xl:text-[7rem]"
     >
       AKSHAAN<br />SINGH
     </h1>
     <h3
-      class="font-bold text-[1.25rem] z-4 text-(--text) md:text-(length:--font-size-subheading) 2xl:text-[3rem]"
+      class="font-bold text-[1.5rem] z-4 text-(--text) pb-36 pl-2 sm:p-0 md:text-(length:--font-size-subheading) 2xl:text-[3rem]"
     >
       // FULL STACK ENGINEER
     </h3>
     <h2
-      class="select-none -top-200 -right-16 text-[6rem] opacity-20 md:block md:text-[12rem]"
+      class="select-none -top-60 -right-6 text-[6rem] md:-top-200 md:-right-16 opacity-20 md:block md:text-[12rem]"
     >
       PORTFOLIO
     </h2>
     <h2
-      class="select-none top-15 right-5 text-[2rem] md:top-5 md:right-5 md:text-[4rem]"
+      class="select-none md:block hidden text-[2rem] md:top-5 md:right-5 md:text-[4rem]"
     >
       PORTFOLIO
     </h2>
     <h2
-      class="select-none top-15 right-15 text-[1rem] md:top-5 md:right-25 md:text-[2rem]"
+      class="select-none top-30 right-8 text-[1.5rem] md:top-5 md:right-25 md:text-[2rem]"
     >
       AKSHAAN SINGH
     </h2>
 
-    <button
-      class="absolute w-40 h-16 [clip-path:polygon(15%_0%,100%_0%,85%_100%,0%_100%)] bg-(--primary) hover:bg-[#7031CE] text-(--text) hover:text-[#F4EEFFC2] font-extrabold font-(family-name:--font-heading) text-shadow-md drop-shadow-md flex justify-center items-center text-[1.5rem] right-90 bottom-20"
-      onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
-      >[ENTER]</button
-    >
+    <!-- A custom made button with some decorative UI elements -->
+    <!-- CTA cluster: one anchor, children positioned inside it -->
     <div
-      class="absolute w-12 h-16 [clip-path:polygon(50%_0%,100%_0%,50%_100%,0%_100%)] bg-(--primary) right-125 bottom-20"
+      class="absolute right-3 bottom-32 h-16 w-48
+         md:right-7 md:bottom-15 md:h-21 md:w-60
+         xl:right-77"
     >
-    </div>
-    <div
-      class="absolute w-30 h-20 [clip-path:polygon(0%_80%,40%_80%,60%_0%,70%_20%,50%_100%,10%_100%)] bg-(--primary) right-77 bottom-15"
-    >
+      <!-- chevron -->
+      <div
+        class="absolute right-0 bottom-0 h-12 w-20 bg-(--primary)
+           [clip-path:polygon(0%_80%,40%_80%,62%_0%,72%_20%,50%_100%,10%_100%)]
+           md:h-20 md:w-30
+           md:[clip-path:polygon(0%_80%,40%_80%,60%_0%,70%_20%,50%_100%,10%_100%)]"
+      >
+      </div>
+
+      <!-- slanted tab -->
+      <div
+        class="absolute right-38 bottom-4 h-12 w-10 bg-(--primary)
+           [clip-path:polygon(50%_0%,90%_0%,40%_100%,0%_100%)]
+           md:right-48 md:bottom-5 md:h-16 md:w-12
+           md:[clip-path:polygon(50%_0%,100%_0%,50%_100%,0%_100%)]"
+      >
+      </div>
+
+      <!-- button -->
+      <button
+        class="absolute right-7 bottom-4 z-6 h-12 w-36
+           md:right-13 md:bottom-5 md:h-16 md:w-40 md:text-[1.5rem]
+           [clip-path:polygon(15%_0%,100%_0%,85%_100%,0%_100%)]
+           bg-(--primary) hover:bg-[#7031CE] text-(--text) hover:text-[#F4EEFFC2]
+           font-extrabold font-(family-name:--font-heading) text-shadow-md drop-shadow-md
+           flex justify-center items-center text-[1rem]"
+        onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
+        >[ENTER]</button
+      >
     </div>
 
     <!-- Some filler text to be displayed as part of the UI -->
     <div
-      class="pointer-events-none absolute text-(--primary) font-extrabold text-xl bottom-40 right-40 2xl:right-10"
+      class="absolute top-50 left-5 flex flex-col items-start border border-(--primary) bg-black/70 p-2 md:hidden xl:contents"
     >
-      SYS//ON
-    </div>
-    <div
-      class="pointer-events-none absolute text-(--primary) font-extrabold text-lg bottom-35 right-40 2xl:right-10"
-    >
-      20.77.26
-    </div>
-    <div
-      class="pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-30 right-40 2xl:right-10"
-    >
-      DIAGNOSTICS RUN
-    </div>
-    <div
-      class="pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-25 right-40 2xl:right-10"
-    >
-      RENDER POSITIVE
-    </div>
-    <div
-      class="pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-20 right-40 2xl:right-10"
-    >
-      TERMINAL ONLINE
-    </div>
-    <div
-      class="sys-box pointer-events-none absolute text-(--primary) font-extrabold text-md bottom-15 right-40 2xl:right-10"
-    >
-      CPU CHECKED
+      <div
+        class="pointer-events-none text-(--primary) font-extrabold text-xl 
+        md:absolute md:bottom-40 md:right-40 md:top-auto md:left-auto 2xl:right-10"
+      >
+        SYS//ON
+      </div>
+      <div
+        class="pointer-events-none text-(--primary) font-extrabold text-lg 
+        md:absolute md:bottom-35 md:right-40 md:top-auto md:left-auto 2xl:right-10"
+      >
+        20.77.26
+      </div>
+      <div
+        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        md:absolute md:bottom-30 md:right-40 md:top-auto md:left-auto 2xl:right-10"
+      >
+        DIAGNOSTICS RUN
+      </div>
+      <div
+        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        md:absolute md:bottom-25 md:right-40 md:top-auto md:left-auto 2xl:right-10"
+      >
+        RENDER POSITIVE
+      </div>
+      <div
+        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        md:absolute md:bottom-20 md:right-40 md:top-auto md:left-auto 2xl:right-10"
+      >
+        TERMINAL ONLINE
+      </div>
+      <div
+        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        md:absolute md:bottom-15 md:right-40 md:top-auto md:left-auto 2xl:right-10"
+      >
+        CPU CHECKED
+      </div>
     </div>
   </div>
 </div>

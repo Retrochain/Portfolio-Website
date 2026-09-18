@@ -4,15 +4,19 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 <div>
   <Astronav closeOnClick>
-    <div class="fixed right-3 top-2 z-70 flex justify-end px-3 py-2 md:hidden">
+    <div class="fixed right-4 top-2 z-70 flex justify-end px-3 py-2 md:hidden">
       <div>
         <MenuIcon class="h-7 w-7 text-(--secondary)" />
       </div>
     </div>
     <MenuItems
-      class="hidden fixed top-0 left-0 z-60 min-h-screen w-full items-center justify-center bg-black/60 backdrop-blur-md text-(length:--font-size-nav) font-semibold text-shadow-md md:flex md:min-h-0 md:bg-transparent md:backdrop-blur-none"
+      class="hidden fixed top-0 left-0 z-60 min-h-screen w-full items-center justify-center
+       bg-black/60 backdrop-blur-md md:text-[1rem] lg:text-(length:--font-size-nav) font-semibold
+      text-shadow-md md:flex md:min-h-0 md:bg-transparent md:backdrop-blur-none"
     >
-      <ul class="flex w-full flex-col items-center justify-center gap-3 px-4 py-6 md:flex-row md:gap-x-4 md:gap-y-1 md:py-3">
+      <ul
+        class="flex w-full flex-col items-center justify-center gap-1 px-4 py-6 md:flex-row md:gap-x-2 md:gap-y-1 md:py-3"
+      >
         <li><a href="#home">//HOME</a></li>
         <li><a href="#projects">//PROJECTS</a></li>
         <li><a href="#about">//ABOUT</a></li>
