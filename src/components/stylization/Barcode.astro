@@ -1,0 +1,76 @@
+---
+const bars = [
+  [3, 100],
+  [1, 72],
+  [2, 100],
+  [4, 88],
+  [1, 100],
+  [2, 76],
+  [1, 100],
+  [5, 100],
+  [2, 84],
+  [1, 100],
+  [3, 70],
+  [2, 100],
+  [4, 92],
+  [1, 100],
+  [2, 78],
+  [3, 100],
+  [1, 86],
+  [5, 100],
+  [2, 100],
+  [1, 74],
+  [3, 100],
+  [2, 90],
+  [4, 100],
+  [1, 80],
+];
+
+interface Props {
+  absolute?: boolean;
+  rotated?: boolean;
+  top?: number;
+  right?: number;
+  bottom?: number;
+  left?: number;
+}
+
+const {
+  absolute = true,
+  rotated = false,
+  top,
+  right,
+  bottom,
+  left,
+}: Props = Astro.props;
+
+const style = [
+  top !== undefined ? `top:${top}px` : "",
+  right !== undefined ? `right:${right}px` : "",
+  bottom !== undefined ? `bottom:${bottom}px` : "",
+  left !== undefined ? `left:${left}px` : "",
+]
+  .filter(Boolean)
+  .join("; ");
+---
+
+<div
+  class:list={[
+    "flex h-10 items-center gap-0.5",
+    absolute ? "absolute" : "relative",
+    rotated && "rotate-90",
+  ]}
+  style={style}
+>
+  {
+    bars.map(([width, height]) => (
+      <span
+        class="block shrink-0 bg-current"
+        style={{
+          width: `${width}px`,
+          height: `${height}%`,
+        }}
+      />
+    ))
+  }
+</div>

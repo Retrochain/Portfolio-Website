@@ -1,27 +1,82 @@
 ---
-
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 ---
 
-<nav
-  class="hidden md:flex fixed top-0 left-0 z-60 text-(length:--font-size-nav) font-semibold justify-center items-center w-full text-shadow-md"
->
-  <div>
-    <ul class="flex flex-wrap justify-center gap-x-4 gap-y-1 px-4 py-3">
-      <li><a href="#home">//HOME</a></li>
-      <li><a href="#projects">//PROJECTS</a></li>
-      <li><a href="#about">//ABOUT</a></li>
-      <li><a href="#skills">//SKILLS</a></li>
-      <li><a href="#contact">//CONTACT</a></li>
-    </ul>
-  </div>
-</nav>
+<div>
+  <Astronav closeOnClick>
+    <div class="fixed right-3 top-2 z-70 flex justify-end px-3 py-2 md:hidden">
+      <div>
+        <MenuIcon class="h-7 w-7 text-(--secondary)" />
+      </div>
+    </div>
+    <MenuItems
+      class="hidden fixed top-0 left-0 z-60 min-h-screen w-full items-center justify-center bg-black/60 backdrop-blur-md text-(length:--font-size-nav) font-semibold text-shadow-md md:flex md:min-h-0 md:bg-transparent md:backdrop-blur-none"
+    >
+      <ul class="flex w-full flex-col items-center justify-center gap-3 px-4 py-6 md:flex-row md:gap-x-4 md:gap-y-1 md:py-3">
+        <li><a href="#home">//HOME</a></li>
+        <li><a href="#projects">//PROJECTS</a></li>
+        <li><a href="#about">//ABOUT</a></li>
+        <li><a href="#skills">//SKILLS</a></li>
+        <li><a href="#contact">//CONTACT</a></li>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</div>
 
-<nav class="text-[1rem] flex md:hidden p-5 justify-center items-center w-full">
-  SYSTEM // ONLINE
-</nav>
+<script>
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>(".astronav-items a"),
+  );
+  const sections = links
+    .map((link) => document.querySelector(link.hash))
+    .filter((section): section is Element => section !== null);
+
+  const setActiveLink = (sectionId: string) => {
+    links.forEach((link) => {
+      const isActive = link.hash === `#${sectionId}`;
+      link.classList.toggle("active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  setActiveLink(sections[0]?.id ?? "");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleSection = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort(
+          (first, second) =>
+            first.boundingClientRect.top - second.boundingClientRect.top,
+        )[0];
+
+      if (visibleSection) {
+        setActiveLink(visibleSection.target.id);
+      }
+    },
+    { rootMargin: "-20% 0px -60% 0px", threshold: 0 },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>
 
 <style>
   nav {
     font-family: var(--font-main);
+  }
+
+  nav:first-of-type a {
+    transition:
+      color 150ms ease,
+      text-shadow 150ms ease;
+  }
+
+  nav:first-of-type a.active {
+    color: var(--secondary);
+    text-shadow: 0 0 12px var(--secondary);
   }
 </style>

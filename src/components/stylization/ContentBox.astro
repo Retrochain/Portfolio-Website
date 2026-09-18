@@ -1,0 +1,34 @@
+---
+// This is a customizable plus decoration that can be plopped anywhere on the website
+// It takes the position and size (by default 24) and creates an appropriate plus there
+const {
+  top,
+  right,
+  bottom,
+  left,
+  text,
+  size,
+  weight,
+  barcode = false,
+  border = true,
+} = Astro.props;
+
+// Here we define the position and size of the plus depending on the user's parameters
+const style = {
+  top: top !== undefined ? `${top}px` : undefined,
+  right: right !== undefined ? `${right}px` : undefined,
+  bottom: bottom !== undefined ? `${bottom}px` : undefined,
+  left: left !== undefined ? `${left}px` : undefined,
+};
+
+import Barcode from "./Barcode.astro";
+---
+
+<!-- We then use the style and absolute positioning to create a plus -->
+<div
+  class="pointer-events-none absolute flex items-center justify-center flex-col whitespace-pre-line px-3 py-2 text-(--primary) border-2 border-(--primary) border-dashed font-bold"
+  style={style}
+>
+  {barcode && <Barcode absolute={false} />}
+  {text}
+</div>
