@@ -7,7 +7,7 @@ import Barcode from "../stylization/Barcode.astro";
 <!-- This is the main hero page, aka the landing page --><!-- We first cover the visible screen with a picture -->
 <div
   id="home"
-  class="w-full min-h-[max(100svh,46rem)] overflow-x-hidden bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
+  class="w-full min-h-100vh overflow-x-hidden bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
 >
   <!-- We then cover the picture with a box with a linear gradient -->
   <div
@@ -104,23 +104,23 @@ import Barcode from "../stylization/Barcode.astro";
     >
     </div>
     <div
-      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-(--primary) 
+      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-(--primary)
       bottom-16 2xl:bottom-50 right-13"
     >
     </div>
     <div
-      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) 
+      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary)
       bottom-16 2xl:bottom-50 right-18"
     >
     </div>
     <div
-      class="hidden absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary) 
+      class="hidden absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary)
       bottom-16 2xl:bottom-50 right-23 lg:flex items-center justify-center"
     >
       <div class="size-1 bg-(--primary) rounded-full"></div>
     </div>
     <div
-      class="hidden absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-28 
+      class="hidden absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-28
       lg:flex items-center justify-center"
     >
       <div class="size-1 bg-(--primary) rounded-full"></div>
@@ -128,7 +128,7 @@ import Barcode from "../stylization/Barcode.astro";
 
     <!-- A div containing a gradient of infinite 1px circles -->
     <div
-      class="absolute left-5 bottom-20 md:bottom-10 md:left-80 2xl:left-120 w-12/13 h-38
+      class="absolute left-5 bottom-20 md:bottom-10 md:left-80 2xl:left-120 w-12/13 h-48
       bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[30px_30px]
       md:w-1/4 md:h-16 md:bg-[radial-gradient(var(--primary)_1px,transparent_1px)] md:bg-size-[8px_8px]"
     >
@@ -136,7 +136,7 @@ import Barcode from "../stylization/Barcode.astro";
 
     <!-- The text being displayed on the hero page -->
     <h1
-      class="font-bold leading-[0.95] z-4 text-(--secondary) pb-2 pl-2 md:p-0 
+      class="font-bold leading-[0.95] z-4 text-(--secondary) pb-2 pl-2 md:p-0
       text-[3rem] md:text-[3.5rem] lg:text-(length:--font-size-heading) 2xl:text-[7rem]"
     >
       AKSHAAN<br />SINGH
@@ -169,7 +169,7 @@ import Barcode from "../stylization/Barcode.astro";
          md:right-7 md:bottom-15 md:h-21 md:w-60
          xl:right-77"
     >
-      <!-- chevron -->
+      <!-- Chevron -->
       <div
         class="absolute right-0 bottom-0 h-12 w-20 bg-(--primary)
            [clip-path:polygon(0%_80%,40%_80%,62%_0%,72%_20%,50%_100%,10%_100%)]
@@ -178,7 +178,7 @@ import Barcode from "../stylization/Barcode.astro";
       >
       </div>
 
-      <!-- slanted tab -->
+      <!-- Slanted Tab -->
       <div
         class="absolute right-38 bottom-4 h-12 w-10 bg-(--primary)
            [clip-path:polygon(50%_0%,90%_0%,40%_100%,0%_100%)]
@@ -187,7 +187,7 @@ import Barcode from "../stylization/Barcode.astro";
       >
       </div>
 
-      <!-- button -->
+      <!-- Button -->
       <button
         class="absolute right-7 bottom-4 z-6 h-12 w-36
            md:right-13 md:bottom-5 md:h-16 md:w-40 md:text-[1.5rem]
@@ -205,43 +205,48 @@ import Barcode from "../stylization/Barcode.astro";
       class="absolute top-50 left-5 flex flex-col items-start border border-(--primary) bg-black/70 p-2 md:hidden xl:contents"
     >
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-xl 
+        class="pointer-events-none text-(--primary) font-extrabold text-xl
         md:absolute md:bottom-40 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         SYS//ON
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-lg 
+        class="pointer-events-none text-(--primary) font-extrabold text-lg
         md:absolute md:bottom-35 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         20.77.26
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        class="pointer-events-none text-(--primary) font-extrabold text-md
         md:absolute md:bottom-30 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         DIAGNOSTICS RUN
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        class="pointer-events-none text-(--primary) font-extrabold text-md
         md:absolute md:bottom-25 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         RENDER POSITIVE
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        class="pointer-events-none text-(--primary) font-extrabold text-md
         md:absolute md:bottom-20 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         TERMINAL ONLINE
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md 
+        class="pointer-events-none text-(--primary) font-extrabold text-md
         md:absolute md:bottom-15 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         CPU CHECKED
       </div>
     </div>
   </div>
+</div>
+<div
+  class="h-30 w-full bg-(--grid)
+           [clip-path:polygon(0%_0%,0%_20%,10%_20%,20%_40%,40%_40%,50%_30%,70%_30%,70%_50%,90%_30%,100%_30%,100%_0%)]"
+>
 </div>
 
 <style>
