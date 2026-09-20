@@ -1,0 +1,38 @@
+---
+const { title, description, color = "var(--secondary)" } = Astro.props;
+---
+
+<div class="grid grid-cols-[2rem_1fr] gap-x-2 gap-y-2" style={`--display-color: ${color}`}>
+  <div
+    data-augmented-ui="tl-clip-y bl-clip l-rect-y border"
+    class="project-border-main col-start-1 row-start-1 w-full h-70 bg-(--display-color)/40 pb-2 mb-2"
+  >
+  </div>
+  <div
+    class="col-start-2 row-start-1 border border-(--display-color)/60 bg-black/30 flex items-center justify-center pb-2 mb-2"
+  >
+    {title}
+  </div>
+  <div
+    data-augmented-ui="bl-clip border"
+    class="project-border-sub col-start-1 row-start-2 w-full h-8 bg-(--display-color)/40 pb-4 mb-8"
+  >
+  </div>
+  <div
+    class="col-start-2 row-start-2 flex items-center justify-center border border-(--display-color)/60 bg-black/30 px-2 mb-8"
+  >
+    {description}
+  </div>
+</div>
+
+<style>
+  .project-border-main {
+    --aug-border-all: 2px;
+    --aug-border-bg: var(--display-color);
+  }
+
+  .project-border-sub {
+    --aug-border-all: 2px;
+    --aug-border-bg: var(--display-color);
+  }
+</style>
