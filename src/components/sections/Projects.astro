@@ -2,22 +2,40 @@
 import ProjectDisplay from "../stylization/ProjectDisplay.astro";
 ---
 
-<div
-  id="projects"
-  class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-70vh w-12/13 gap-1 px-4 py-3"
->
-  <h2 class="text-(--secondary) font-extrabold text-[3rem]">PROJECTS</h2>
-  <h3 class="font-bold text-[1.5rem]">Some projects I've worked on</h3>
-  <h4 class="font-bold text-[1rem] pb-4">Click on a project to learn more</h4>
+<div id="projects" class="pt-18 pb-18">
+  <div
+    class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-70vh w-12/13 gap-1 px-4 py-3"
+  >
+    <h2 class="text-(--secondary) font-extrabold text-[3rem]">PROJECTS</h2>
+    <h3 class="font-bold text-[1.5rem]">Some projects I've worked on</h3>
+    <h4 class="font-bold text-[1rem] pb-4">Click on a project to learn more</h4>
 
-  <div class="flex w-full flex-row flex-wrap gap-x-10 items-center justify-start">
-    <ProjectDisplay title="Project 1" description="What's The Weather!" color="#ff0026"/>
-    <ProjectDisplay title="Project 2" description="Birthday Calendar" color="#a9f51b"/>
-    <ProjectDisplay title="Project 3" description="Attendance Application/Website" color="#005eff"/>
-    <ProjectDisplay title="Project 4" description="Upcoming Financial Analyst Website" color="#00e1ff"/>
+    <div
+      class="flex w-full flex-row flex-wrap gap-x-10 items-center justify-start"
+    >
+      <ProjectDisplay
+        title="Project 1"
+        description="What's The Weather!"
+        color="#ff0026"
+      />
+      <ProjectDisplay
+        title="Project 2"
+        description="Birthday Calendar"
+        color="#a9f51b"
+      />
+      <ProjectDisplay
+        title="Project 3"
+        description="Attendance Application/Website"
+        color="#005eff"
+      />
+      <ProjectDisplay
+        title="Project 4"
+        description="Upcoming Financial Analyst Website"
+        color="#00e1ff"
+      />
+    </div>
   </div>
 </div>
-<div class="pb-18"></div>
 
 <style>
   h2 {
