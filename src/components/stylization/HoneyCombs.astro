@@ -1,0 +1,20 @@
+---
+const { top, right, bottom, left, size = 24 } = Astro.props;
+
+// Here we define the position and size of the plus depending on the user's parameters
+const style = {
+  top: top !== undefined ? `${top}px` : undefined,
+  right: right !== undefined ? `${right}px` : undefined,
+  bottom: bottom !== undefined ? `${bottom}px` : undefined,
+  left: left !== undefined ? `${left}px` : undefined,
+  width: `${size}px`,
+  height: `${size}px`,
+};
+---
+
+<div
+  class="pointer-events-none absolute z-2 bg-(--primary)/80
+    [clip-path:polygon(0%_50%,30%_0%,70%_0%,100%_50%,70%_100%,30%_100%)]"
+  style={style}
+>
+</div>

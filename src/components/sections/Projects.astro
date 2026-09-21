@@ -1,11 +1,18 @@
 ---
 import ProjectDisplay from "../stylization/ProjectDisplay.astro";
 import PlusDecoration from "../stylization/Plus.astro";
+import HoneyCombs from "../stylization/HoneyCombs.astro";
 ---
 
 <div id="projects" class="relative pt-18 pb-18 overflow-hidden">
   <div
-    class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-90vh w-19/20 gap-1 px-4 py-3"
+    class="absolute top-45 left-5 md:top-50 md:left-20 w-[60%] h-36
+      bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[8px_8px]
+      md:w-[40%] md:h-[10%] md:bg-[radial-gradient(var(--primary)_1px,transparent_1px)] md:bg-size-[24px_24px]"
+  >
+  </div>
+  <div
+    class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-90vh w-19/20 gap-1 px-4 py-3 z-10"
   >
     <h2
       class="absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-0 sm:block lg:-right-155 text-[12rem]"
@@ -18,15 +25,22 @@ import PlusDecoration from "../stylization/Plus.astro";
     <h4 class="absolute text-(--primary) text-[1.5rem] top-0 left-10">
       //SYS//ONLINE
     </h4>
+    <h4
+      class="absolute bottom-5 left-[calc(50%-2.75rem)] -translate-x-1/2 whitespace-nowrap text-[1rem] font-bold text-(--primary) sm:bottom-1 sm:left-50 sm:translate-x-0 sm:text-[1.5rem]"
+    >
+      // PROJECT_NODE
+    </h4>
 
-    <h2 class="text-(--secondary) font-extrabold text-[3rem]">PROJECTS</h2>
-    <h3 class="font-bold text-[1.5rem]">// Some projects I've worked on</h3>
-    <h4 class="font-bold text-[1rem] pb-4">
+    <h2 class="text-(--secondary) font-extrabold text-[3rem] z-10">PROJECTS</h2>
+    <h3 class="font-bold text-[1.5rem] z-10">
+      // Some projects I've worked on
+    </h3>
+    <h4 class="font-bold text-[1rem] pb-4 z-10">
       // Click on a project to learn more
     </h4>
 
     <div
-      class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-start shadow-2xl/40"
+      class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-start shadow-2xl/40 z-10"
     >
       <ProjectDisplay
         img="/WhatsTheWeather.png"
@@ -54,15 +68,75 @@ import PlusDecoration from "../stylization/Plus.astro";
       />
     </div>
   </div>
+  <div class="lg:block hidden">
+    <HoneyCombs top={140} right={216} size={56} />
+    <HoneyCombs top={110} right={258} size={56} />
+    <HoneyCombs top={230} right={258} size={56} />
+    <HoneyCombs top={80} right={300} size={56} />
+    <HoneyCombs top={140} right={300} size={56} />
+    <HoneyCombs top={200} right={300} size={56} />
+    <HoneyCombs top={110} right={342} size={56} />
+    <HoneyCombs top={230} right={342} size={56} />
+    <HoneyCombs top={80} right={384} size={56} />
+    <HoneyCombs top={200} right={384} size={56} />
+    <HoneyCombs top={110} right={426} size={56} />
+    <HoneyCombs top={170} right={426} size={56} />
+    <HoneyCombs top={230} right={426} size={56} />
+    <HoneyCombs top={200} right={468} size={56} />
+  </div>
 
-  <PlusDecoration bottom={0} right={25} size={20} />
+  <div class="hidden sm:block lg:hidden">
+    <HoneyCombs top={140} right={120} size={56} />
+    <HoneyCombs top={110} right={162} size={56} />
+    <HoneyCombs top={80} right={204} size={56} />
+    <HoneyCombs top={140} right={204} size={56} />
+    <HoneyCombs top={200} right={204} size={56} />
+    <HoneyCombs top={110} right={246} size={56} />
+    <HoneyCombs top={80} right={288} size={56} />
+    <HoneyCombs top={140} right={288} size={56} />
+  </div>
+
+  <div class="block sm:hidden">
+    <HoneyCombs top={170} right={46} size={38} />
+    <HoneyCombs top={210} right={46} size={38} />
+    <HoneyCombs top={190} right={18} size={38} />
+    <HoneyCombs top={230} right={18} size={38} />
+    <HoneyCombs top={190} right={74} size={38} />
+  </div>
+
+  <div class="md:block hidden">
+    <PlusDecoration bottom={100} right={25} size={20} />
+    <PlusDecoration top={90} left={25} size={20} />
+  </div>
+
   <PlusDecoration bottom={25} right={0} size={20} />
   <PlusDecoration bottom={25} right={25} size={20} />
+  <PlusDecoration bottom={25} right={50} size={20} />
+  <PlusDecoration bottom={25} right={75} size={20} />
   <PlusDecoration bottom={50} right={0} size={20} />
   <PlusDecoration bottom={50} right={25} size={20} />
+  <PlusDecoration bottom={50} right={50} size={20} />
   <PlusDecoration bottom={75} right={0} size={20} />
   <PlusDecoration bottom={75} right={25} size={20} />
-  <PlusDecoration bottom={75} right={50} size={20} />
+
+  <PlusDecoration top={40} left={0} size={20} />
+  <PlusDecoration top={40} left={25} size={20} />
+  <PlusDecoration top={40} left={50} size={20} />
+  <PlusDecoration top={65} left={0} size={20} />
+  <PlusDecoration top={65} left={25} size={20} />
+  <PlusDecoration top={90} left={0} size={20} />
+  <PlusDecoration top={115} left={0} size={20} />
+
+  <div
+    class="absolute w-4 h-4 aspect-square bottom-6 sm:bottom-4 left-3 bg-(--primary)"  >
+  </div>
+  <div
+    class="block sm:hidden absolute w-4 h-4 aspect-square bottom-6 right-25 bg-(--primary)"  >
+  </div>
+  <div
+    class="absolute pointer-events-none bottom-6 left-3 flex h-px w-[calc(100%-8rem)] items-center justify-center bg-(--primary) sm:w-45"
+  >
+  </div>
 </div>
 
 <style>
