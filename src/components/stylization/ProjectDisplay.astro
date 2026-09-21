@@ -1,17 +1,36 @@
 ---
-const { title, description, color = "var(--secondary)" } = Astro.props;
+const {
+  img,
+  gif,
+  border,
+  title,
+  description,
+  color = "var(--secondary)",
+} = Astro.props;
 ---
 
-<div class="grid grid-cols-[2rem_1fr] gap-x-2 gap-y-2" style={`--display-color: ${color}`}>
+<div
+  class="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-1 gap-y-1"
+  style={`--display-color: ${color}`}
+>
   <div
-    data-augmented-ui="tl-clip-y bl-clip l-rect-y border"
-    class="project-border-main col-start-1 row-start-1 w-full h-70 bg-(--display-color)/40 pb-2 mb-2"
+    data-augmented-ui={border}
+    class="project-border-main col-start-1 row-start-1 w-full h-full bg-(--display-color)/40 pb-2"
   >
   </div>
   <div
-    class="col-start-2 row-start-1 border border-(--display-color)/60 bg-black/30 flex items-center justify-center pb-2 mb-2"
+    class="group relative col-start-2 row-start-1 min-w-0 w-full border border-(--display-color)/60 bg-black/30 overflow-hidden"
   >
-    {title}
+    <img
+      src={img}
+      alt={title}
+      class="sm:block hidden w-full h-auto"
+    />
+    <img
+      src={gif}
+      alt={title}
+      class="block w-full h-auto sm:absolute sm:inset-0 sm:w-full sm:h-full sm:object-contain sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100"
+    />
   </div>
   <div
     data-augmented-ui="bl-clip border"
@@ -19,7 +38,7 @@ const { title, description, color = "var(--secondary)" } = Astro.props;
   >
   </div>
   <div
-    class="col-start-2 row-start-2 flex items-center justify-center border border-(--display-color)/60 bg-black/30 px-2 mb-8"
+    class="col-start-2 row-start-2 flex items-center justify-center border border-(--display-color)/60 bg-(--secondary)/90 px-2 mb-8 text-black font-bold"
   >
     {description}
   </div>

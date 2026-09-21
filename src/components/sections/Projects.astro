@@ -1,40 +1,68 @@
 ---
 import ProjectDisplay from "../stylization/ProjectDisplay.astro";
+import PlusDecoration from "../stylization/Plus.astro";
 ---
 
-<div id="projects" class="pt-18 pb-18">
+<div id="projects" class="relative pt-18 pb-18 overflow-hidden">
   <div
-    class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-70vh w-12/13 gap-1 px-4 py-3"
+    class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-90vh w-19/20 gap-1 px-4 py-3"
   >
+    <h2
+      class="absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-0 sm:block lg:-right-155 text-[12rem]"
+    >
+      PROJECTS
+    </h2>
+    <h4 class="absolute text-(--primary) text-[1.5rem] top-0 right-10">
+      //2077.26.02
+    </h4>
+    <h4 class="absolute text-(--primary) text-[1.5rem] top-0 left-10">
+      //SYS//ONLINE
+    </h4>
+
     <h2 class="text-(--secondary) font-extrabold text-[3rem]">PROJECTS</h2>
-    <h3 class="font-bold text-[1.5rem]">Some projects I've worked on</h3>
-    <h4 class="font-bold text-[1rem] pb-4">Click on a project to learn more</h4>
+    <h3 class="font-bold text-[1.5rem]">// Some projects I've worked on</h3>
+    <h4 class="font-bold text-[1rem] pb-4">
+      // Click on a project to learn more
+    </h4>
 
     <div
-      class="flex w-full flex-row flex-wrap gap-x-10 items-center justify-start"
+      class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-start shadow-2xl/40"
     >
       <ProjectDisplay
+        img="/WhatsTheWeather.png"
+        gif="/WhatsTheWeather.gif"
+        border="tl-clip-y bl-clip l-rect-y border"
         title="Project 1"
         description="What's The Weather!"
-        color="#ff0026"
+        color="#005EFF"
       />
       <ProjectDisplay
+        img="/BirthdayCalendar.png"
+        gif="/BirthdayCalendar.gif"
+        border="tl-clip bl-rect l-rect border"
         title="Project 2"
         description="Birthday Calendar"
-        color="#a9f51b"
+        color="#A9f51B"
       />
       <ProjectDisplay
+        img="/UTDAttendanceApp.png"
+        gif="/UTDAttendanceApp.gif"
+        border="tl-rect l-rect-y border"
         title="Project 3"
         description="Attendance Application/Website"
-        color="#005eff"
-      />
-      <ProjectDisplay
-        title="Project 4"
-        description="Upcoming Financial Analyst Website"
-        color="#00e1ff"
+        color="#FF0026"
       />
     </div>
   </div>
+
+  <PlusDecoration bottom={0} right={25} size={20} />
+  <PlusDecoration bottom={25} right={0} size={20} />
+  <PlusDecoration bottom={25} right={25} size={20} />
+  <PlusDecoration bottom={50} right={0} size={20} />
+  <PlusDecoration bottom={50} right={25} size={20} />
+  <PlusDecoration bottom={75} right={0} size={20} />
+  <PlusDecoration bottom={75} right={25} size={20} />
+  <PlusDecoration bottom={75} right={50} size={20} />
 </div>
 
 <style>

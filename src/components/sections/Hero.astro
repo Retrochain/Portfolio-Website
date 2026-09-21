@@ -7,11 +7,11 @@ import Barcode from "../stylization/Barcode.astro";
 <!-- This is the main hero page, aka the landing page --><!-- We first cover the visible screen with a picture -->
 <div
   id="home"
-  class="w-full min-h-100vh overflow-x-hidden bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
+  class="w-full h-[85vh] md:h-screen overflow-x-hidden bg-[url('/night-city-bg.jpg')] bg-cover bg-center text-shadow-lg/30"
 >
   <!-- We then cover the picture with a box with a linear gradient -->
   <div
-    class="relative box-border flex w-full min-h-screen flex-col items-start justify-end bg-linear-to-r from-black to-black/55 p-3 pb-12 md:p-16"
+    class="relative box-border flex w-full h-full flex-col items-start justify-end bg-linear-to-r from-black to-black/55 p-3 md:p-16"
   >
     <!-- Using a custom component we can create a box to display some text -->
     <!-- Desktop Version -->
@@ -100,35 +100,41 @@ import Barcode from "../stylization/Barcode.astro";
 
     <!-- Using divs we create some squares for UI -->
     <div
-      class="hidden lg:block absolute w-4 h-4 aspect-square bottom-16 2xl:bottom-50 right-8 bg-(--primary)"
+      class="md:hidden lg:block absolute w-4 h-4 aspect-square bottom-24 2xl:bottom-50 right-8 bg-(--primary)"
     >
     </div>
     <div
-      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-(--primary)
-      bottom-16 2xl:bottom-50 right-13"
+      class="md:hidden lg:block absolute w-4 h-4 aspect-square border-2 border-(--primary)
+      bottom-24 2xl:bottom-50 right-13"
     >
     </div>
     <div
-      class="hidden lg:block absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary)
-      bottom-16 2xl:bottom-50 right-18"
+      class="md:hidden lg:block absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary)
+      bottom-24 2xl:bottom-50 right-18"
     >
     </div>
     <div
-      class="hidden absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary)
-      bottom-16 2xl:bottom-50 right-23 lg:flex items-center justify-center"
+      class="md:hidden lg:block absolute w-4 h-4 aspect-square border-2 border-dashed border-(--primary)
+      bottom-24 2xl:bottom-50 right-23 flex items-center justify-center"
     >
-      <div class="size-1 bg-(--primary) rounded-full"></div>
+      <div
+        class="absolute left-1/2 top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 bg-(--primary) rounded-full"
+      >
+      </div>
     </div>
     <div
-      class="hidden absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-16 2xl:bottom-50 right-28
-      lg:flex items-center justify-center"
+      class="md:hidden lg:block absolute w-4 h-4 aspect-square border-2 border-(--primary) bottom-24 2xl:bottom-50 right-28
+      flex items-center justify-center"
     >
-      <div class="size-1 bg-(--primary) rounded-full"></div>
+      <div
+        class="absolute left-1/2 top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 bg-(--primary) rounded-full"
+      >
+      </div>
     </div>
 
     <!-- A div containing a gradient of infinite 1px circles -->
     <div
-      class="absolute left-5 bottom-20 md:bottom-10 md:left-80 2xl:left-120 w-12/13 h-48
+      class="absolute left-5 bottom-0 md:bottom-10 md:left-80 2xl:left-120 w-12/13 h-48
       bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[30px_30px]
       md:w-1/4 md:h-16 md:bg-[radial-gradient(var(--primary)_1px,transparent_1px)] md:bg-size-[8px_8px]"
     >
@@ -136,13 +142,12 @@ import Barcode from "../stylization/Barcode.astro";
 
     <!-- The text being displayed on the hero page -->
     <h1
-      class="font-bold leading-[0.95] z-4 text-(--secondary) pb-2 pl-2 md:p-0
-      text-[3rem] md:text-[3.5rem] lg:text-(length:--font-size-heading) 2xl:text-[7rem]"
+      class="font-bold leading-[0.95] z-3 text-(--secondary) text-(length:--font-size-heading) 2xl:text-[7rem]"
     >
       AKSHAAN<br />SINGH
     </h1>
     <h3
-      class="font-bold text-[1.5rem] z-4 text-(--text) pb-36 pl-2 sm:p-0 md:text-(length:--font-size-subheading) 2xl:text-[3rem]"
+      class="font-bold z-3 text-(--text) pb-2 text-(length:--font-size-subheading) 2xl:text-[3rem]"
     >
       // FULL STACK ENGINEER
     </h3>
@@ -165,7 +170,7 @@ import Barcode from "../stylization/Barcode.astro";
     <!-- A custom made button with some decorative UI elements -->
     <!-- CTA cluster: one anchor, children positioned inside it -->
     <div
-      class="absolute right-3 bottom-32 h-16 w-48
+      class="absolute right-0 bottom-5 h-16 w-48
          md:right-7 md:bottom-15 md:h-21 md:w-60
          xl:right-77"
     >
@@ -241,8 +246,23 @@ import Barcode from "../stylization/Barcode.astro";
         CPU CHECKED
       </div>
     </div>
+
+    <!-- Additional text for mobile only -->
+
+    <div
+      class="bottom-10 left-0 text-(--primary) font-extrabold text-[1rem] block sm:hidden"
+    >
+      // INIT_SEQUENCE
+    </div>
+    <div
+      class="bottom-0 left-0 text-(--primary) font-extrabold text-[1rem] block sm:hidden"
+    >
+      NODE_CHANGE_DETECTED
+    </div>
   </div>
 </div>
+
+<!-- Futuristic Page Divider -->
 <div
   class="h-30 w-full bg-(--grid)
            [clip-path:polygon(0%_0%,0%_20%,10%_20%,20%_40%,40%_40%,50%_30%,70%_30%,70%_50%,90%_30%,100%_30%,100%_0%)]"
