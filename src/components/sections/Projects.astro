@@ -15,20 +15,25 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
     class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-90vh w-19/20 gap-1 px-4 py-3 z-10"
   >
     <h2
-      class="absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-0 sm:block lg:-right-155 text-[12rem]"
+      class="absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-2 sm:block lg:-right-155 text-[12rem] z-15"
     >
       PROJECTS
     </h2>
-    <h4 class="absolute text-(--primary) text-[1.5rem] top-0 right-10">
+    <h4 class="absolute text-(--decor) text-[1.5rem] top-0 right-10">
       //2077.26.02
     </h4>
-    <h4 class="absolute text-(--primary) text-[1.5rem] top-0 left-10">
+    <h4 class="absolute text-(--decor) text-[1.5rem] top-0 left-10">
       //SYS//ONLINE
     </h4>
     <h4
-      class="absolute bottom-5 left-[calc(50%-2.75rem)] -translate-x-1/2 whitespace-nowrap text-[1rem] font-bold text-(--primary) sm:bottom-1 sm:left-50 sm:translate-x-0 sm:text-[1.5rem]"
+      class="absolute bottom-5 left-[calc(50%-2.75rem)] -translate-x-1/2 whitespace-nowrap text-[1rem] font-bold text-(--decor) sm:bottom-1 sm:left-50 sm:translate-x-0 sm:text-[1.5rem]"
     >
       // PROJECT_NODE
+    </h4>
+    <h4
+      class="absolute md:block hidden font-bold text-(--decor) bottom-1 right-50 translate-x-0 text-[1.5rem]"
+    >
+      // CHECK_NODE_01
     </h4>
 
     <h2 class="text-(--secondary) font-extrabold text-[3rem] z-10">PROJECTS</h2>
@@ -42,6 +47,14 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
     <div
       class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-start shadow-2xl/40 z-10"
     >
+      <ProjectDisplay
+        img="/UTDAttendanceApp.png"
+        gif="/UTDAttendanceApp.gif"
+        border="tl-rect l-rect-y border"
+        title="Project 3"
+        description="Attendance Application/Website"
+        color="#FF0026"
+      />
       <ProjectDisplay
         img="/WhatsTheWeather.png"
         gif="/WhatsTheWeather.gif"
@@ -57,14 +70,6 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
         title="Project 2"
         description="Birthday Calendar"
         color="#A9f51B"
-      />
-      <ProjectDisplay
-        img="/UTDAttendanceApp.png"
-        gif="/UTDAttendanceApp.gif"
-        border="tl-rect l-rect-y border"
-        title="Project 3"
-        description="Attendance Application/Website"
-        color="#FF0026"
       />
     </div>
   </div>
@@ -128,13 +133,43 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
   <PlusDecoration top={115} left={0} size={20} />
 
   <div
-    class="absolute w-4 h-4 aspect-square bottom-6 sm:bottom-4 left-3 bg-(--primary)"  >
+    class="absolute w-4 h-4 aspect-square bottom-6 sm:bottom-4 left-0 sm:left-3 bg-(--primary)"
+  >
   </div>
   <div
-    class="block sm:hidden absolute w-4 h-4 aspect-square bottom-6 right-25 bg-(--primary)"  >
+    class="block sm:hidden absolute w-4 h-4 aspect-square bottom-6 right-25 bg-(--primary)"
+  >
   </div>
   <div
     class="absolute pointer-events-none bottom-6 left-3 flex h-px w-[calc(100%-8rem)] items-center justify-center bg-(--primary) sm:w-45"
+  >
+  </div>
+  <div
+    class="absolute bg-(--primary) pointer-events-none items-center justify-center top-45 bottom-7 left-0 sm:left-5 w-px"
+  >
+  </div>
+  <div
+    class="absolute bg-(--primary) pointer-events-none items-center justify-center top-38 h-40 left-1 sm:left-3 w-px"
+  >
+  </div>
+  <div
+    class="absolute h-26 bg-(--primary) pointer-events-none items-center justify-center top-34 left-2 sm:top-34 sm:left-4 w-px"
+  >
+  </div>
+  <div
+    class="absolute hidden sm:block bottom-6 left-97 right-100 h-px bg-(--primary) pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute hidden sm:block bottom-6 right-25 left-97 md:w-22 md:left-auto h-px bg-(--primary) pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute hidden sm:block bottom-4 right-15 w-16 h-px bg-(--primary) pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute hidden sm:block bottom-2 right-10 w-32 h-px bg-(--primary) pointer-events-none"
   >
   </div>
 </div>

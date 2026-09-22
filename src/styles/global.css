@@ -7,11 +7,12 @@
 :root {
     /*Global Colors*/
     --bg: linear-gradient(to bottom, #000000, #0E001B);
-    --grid: #13003F;
-    --scanlines: rgba(168, 85, 247, 0.10);
-    --primary: #8B3DFF;
+    --grid: #24104A;
+    --scanlines: rgba(103, 232, 249, 0.08);
+    --decor: #B8FF3D;
+    --primary: #A855F7;
     --secondary: #FFE600;
-    --danger: #ff3b5c;
+    --danger: #FF3B5C;
     --text: #F4EEFF;
 
 

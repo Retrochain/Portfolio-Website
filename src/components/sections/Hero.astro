@@ -82,7 +82,7 @@ import Barcode from "../stylization/Barcode.astro";
     </div>
 
     <!-- A custom component that generates a barcode -->
-    <div class="md:block hidden">
+    <div class="md:block hidden text-(--decor)">
       <Barcode top={230} left={-10} rotated={true} />
     </div>
 
@@ -176,7 +176,7 @@ import Barcode from "../stylization/Barcode.astro";
     >
       <!-- Chevron -->
       <div
-        class="absolute right-0 bottom-0 h-12 w-20 bg-(--primary)
+        class="absolute right-0 bottom-0 h-12 w-20 bg-(--decor)
            [clip-path:polygon(0%_80%,40%_80%,62%_0%,72%_20%,50%_100%,10%_100%)]
            md:h-20 md:w-30
            md:[clip-path:polygon(0%_80%,40%_80%,60%_0%,70%_20%,50%_100%,10%_100%)]"
@@ -197,7 +197,7 @@ import Barcode from "../stylization/Barcode.astro";
         class="absolute right-7 bottom-4 z-6 h-12 w-36
            md:right-13 md:bottom-5 md:h-16 md:w-40 md:text-[1.5rem]
            [clip-path:polygon(15%_0%,100%_0%,85%_100%,0%_100%)]
-           bg-(--primary) hover:bg-[#7031CE] text-(--text) hover:text-[#F4EEFFC2]
+           bg-(--primary) hover:bg-[#a646ff] text-(--text) hover:text-[#d9d8db]
            font-extrabold font-(family-name:--font-heading) text-shadow-md drop-shadow-md
            flex justify-center items-center text-[1rem]"
         onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
@@ -207,40 +207,40 @@ import Barcode from "../stylization/Barcode.astro";
 
     <!-- Some filler text to be displayed as part of the UI -->
     <div
-      class="absolute top-50 left-5 flex flex-col items-start border border-(--primary) bg-black/70 p-2 md:hidden xl:contents"
+      class="absolute top-50 left-5 flex flex-col items-start border border-(--decor) bg-black/70 p-2 md:hidden xl:contents"
     >
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-xl
+        class="pointer-events-none text-(--decor) font-extrabold text-xl
         md:absolute md:bottom-40 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         SYS//ON
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-lg
+        class="pointer-events-none text-(--decor) font-extrabold text-lg
         md:absolute md:bottom-35 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         20.77.26
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md
+        class="pointer-events-none text-(--decor) font-extrabold text-md
         md:absolute md:bottom-30 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         DIAGNOSTICS RUN
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md
+        class="pointer-events-none text-(--decor) font-extrabold text-md
         md:absolute md:bottom-25 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         RENDER POSITIVE
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md
+        class="pointer-events-none text-(--decor) font-extrabold text-md
         md:absolute md:bottom-20 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         TERMINAL ONLINE
       </div>
       <div
-        class="pointer-events-none text-(--primary) font-extrabold text-md
+        class="pointer-events-none text-(--decor) font-extrabold text-md
         md:absolute md:bottom-15 md:right-40 md:top-auto md:left-auto 2xl:right-10"
       >
         CPU CHECKED
@@ -250,12 +250,12 @@ import Barcode from "../stylization/Barcode.astro";
     <!-- Additional text for mobile only -->
 
     <div
-      class="bottom-10 left-0 text-(--primary) font-extrabold text-[1rem] block sm:hidden"
+      class="bottom-10 left-0 text-(--decor) font-extrabold text-[1rem] block sm:hidden"
     >
       // INIT_SEQUENCE
     </div>
     <div
-      class="bottom-0 left-0 text-(--primary) font-extrabold text-[1rem] block sm:hidden"
+      class="bottom-0 left-0 text-(--decor) font-extrabold text-[1rem] block sm:hidden"
     >
       NODE_CHANGE_DETECTED
     </div>
