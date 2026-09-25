@@ -1,0 +1,77 @@
+---
+interface Props {
+  status: string;
+  type: string;
+  duration: string;
+  technologies: string[];
+  features: string[];
+  color: string;
+}
+
+const {
+  status,
+  type,
+  duration,
+  technologies,
+  features,
+  color,
+} = Astro.props;
+---
+
+<div class="flex min-h-0 flex-1 flex-col gap-3">
+
+  <!-- In this first block, we place some project details directly from the projects.ts file -->
+
+  <section
+    class="min-h-0 flex-1 overflow-y-auto border border-dashed border-(--display-color)/70 bg-black/20 p-3 sm:p-4"
+    style={`--display-color: ${color}`}
+  >
+    <h4 class="mb-2 text-lg font-extrabold text-(--secondary)">
+      //DETAILS
+    </h4>
+
+    <dl
+      class="space-y-2 wrap-break-word text-sm font-bold leading-5 text-(--text) uppercase sm:text-base"
+    >
+      <div>
+        <dt class="inline text-(--secondary)">Status: </dt>
+        <dd class="inline">{status}</dd>
+      </div>
+
+      <div>
+        <dt class="inline text-(--secondary)">Type: </dt>
+        <dd class="inline">{type}</dd>
+      </div>
+
+      <div>
+        <dt class="inline text-(--secondary)">Duration: </dt>
+        <dd class="inline">{duration}</dd>
+      </div>
+
+      <div>
+        <dt class="inline text-(--secondary)">Stack: </dt>
+        <dd class="inline">{technologies.join(", ")}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- And add some features of the project in the second block -->
+
+  <section
+    class="min-h-0 flex-1 overflow-y-auto border border-dashed border-(--display-color)/70 bg-black/20 p-3 sm:p-4"
+    style={`--display-color: ${color}`}
+  >
+    <h4 class="mb-2 text-lg font-extrabold text-(--secondary)">
+      //FEATURES
+    </h4>
+
+    <ul
+      class="space-y-2 wrap-break-word text-sm font-semibold leading-5 text-(--text) uppercase sm:text-base"
+    >
+      {features.map((feature) => (
+        <li>- {feature}</li>
+      ))}
+    </ul>
+  </section>
+
+</div>

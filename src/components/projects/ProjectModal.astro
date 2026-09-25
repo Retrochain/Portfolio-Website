@@ -1,0 +1,203 @@
+---
+import type { Project } from "../../data/projects";
+
+import ProjectDetails from "./ProjectDetails.astro";
+import ProjectLinks from "./ProjectLinks.astro";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const {
+  number,
+  title,
+  img,
+  color,
+  border,
+  overview,
+  technologies,
+  features,
+  status,
+  type,
+  duration,
+} = project;
+
+const underscoredTitle = title.replace(/\s+/g, "_");
+const modalId = `project-modal-${project.id}`;
+const titleId = `${modalId}-title`;
+---
+
+<div
+  id={modalId}
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-labelledby={titleId}
+  class="modal-popup fixed inset-0 z-90 hidden items-start justify-center overflow-y-auto overflow-x-hidden bg-black/80 p-2 sm:items-center sm:p-4"
+>
+  <div class="flex w-full min-w-0 max-w-7xl flex-col items-start">
+    <!-- This is the modal header mostly for decoration -->
+
+    <div
+      class="modal-header w-3/4 bg-(--grid)/60 px-2 py-1 sm:w-2/3 md:w-2/5 lg:w-1/4"
+      data-augmented-ui="tr-clip border"
+      style={`--display-color: ${color}`}
+    >
+      <h2
+        id={titleId}
+        class="flex min-h-10 items-center wrap-break-word px-4 text-xl font-extrabold leading-tight text-(--display-color)"
+      >
+        //PROJECT_NODE_DISP
+      </h2>
+    </div>
+
+    <!-- This is the actual main modal where all the information goes -->
+
+    <div
+      class="relative grid min-h-max w-full min-w-0 grid-cols-1 gap-4 border border-(--primary)/60 bg-(--grid)/60 p-3 shadow-2xl/40 sm:min-h-0 sm:max-h-[92dvh] sm:overflow-hidden sm:p-4 md:p-5 lg:h-[85dvh] lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]"
+    >
+      <!-- A standard close button -->
+
+      <button
+        type="button"
+        class="close-button absolute right-2 top-2 z-20 flex h-8 w-8 items-center justify-center border-2 border-red-900 bg-red-600/80 text-sm hover:bg-red-700/80"
+        aria-label="Close project modal"
+      >
+        X
+      </button>
+
+      <!-- Our modal is split into two columns, in the left column we place the project image and an overview -->
+
+      <section
+        class="grid min-w-0 w-full grid-rows-[auto_auto_auto] gap-3 pt-8 lg:min-h-0 lg:grid-rows-[auto_minmax(0,3fr)_minmax(0,2fr)] lg:gap-4 lg:pt-0"
+      >
+        <!-- Display the title of the project first -->
+
+        <h3
+          class="min-w-0 max-w-full wrap-break-word text-2xl font-extrabold text-(--secondary) uppercase sm:text-3xl lg:text-4xl"
+        >
+          0{number}/{underscoredTitle}
+        </h3>
+
+        <!-- Then an image of the project -->
+
+        <div
+          class="grid min-w-0 w-full grid-cols-[2rem_minmax(0,1fr)] overflow-hidden bg-black/30 lg:min-h-0 gap-1"
+        >
+          <!-- A stylized augmented border that is placed on the left of the image -->
+
+          <div
+            data-augmented-ui={border}
+            class="project-border-main h-full w-full bg-(--display-color)/40"
+            style={`--display-color: ${color}`}
+          >
+          </div>
+
+          <!-- The image of the current project -->
+
+          <div
+            class="relative h-[30vh] min-h-40 w-full min-w-0 overflow-hidden border border-(--display-color)/60 bg-black/30 sm:h-[35vh] lg:h-full"
+            style={`--display-color: ${color}`}
+          >
+            <img
+              src={img}
+              alt={`An image depicting ${title}`}
+              class="block h-full w-full object-contain"
+            />
+          </div>
+        </div>
+
+        <!-- The overview of the project goes inside this div below the image -->
+
+        <section
+          class="grid min-w-0 w-full lg:min-h-0 lg:grid-rows-[auto_minmax(0,1fr)]"
+        >
+          <!-- A decoration element that contains the overview title -->
+
+          <div
+            class="modal-header w-1/2 bg-(--grid)/60 py-1 sm:w-2/3 md:w-2/5 lg:w-1/6"
+            data-augmented-ui="tr-clip border"
+            style={`--display-color: ${color}`}
+          >
+            <h3
+              class="flex min-h-8 items-center px-4 text-xl font-extrabold leading-tight text-(--secondary)"
+            >
+              //OVERVIEW
+            </h3>
+          </div>
+
+          <!-- This div contains the overview text -->
+
+          <div
+            class="min-w-0 w-full border border-(--display-color)/60 bg-(--grid)/40 p-3 sm:p-4 lg:min-h-0 lg:overflow-y-auto lg:p-5"
+            style={`--display-color: ${color}`}
+          >
+            <p
+              class="wrap-break-word text-sm font-bold leading-6 text-(--text) sm:text-base lg:text-lg"
+            >
+              {overview}
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <!-- In our right column, we display some project information such as features, status, duration, etc. -->
+
+      <section
+        class="grid min-h-0 min-w-0 w-full grid-rows-[auto_minmax(0,1fr)]"
+      >
+        <!-- A decor element that displays the project information text -->
+
+        <div
+          class="modal-header w-3/4 bg-(--grid)/60 px-2 py-1 sm:w-2/3 md:w-2/5 lg:w-2/3"
+          data-augmented-ui="tr-clip border"
+          style={`--display-color: ${color}`}
+        >
+          <h3
+            class="flex min-h-10 items-center px-2 text-xl font-extrabold leading-tight text-(--secondary)"
+          >
+            //PROJECT_INFO
+          </h3>
+        </div>
+
+        <!-- In this panel on the right side we will create two boxes, one for details and the other for features -->
+
+        <div
+          class="min-h-0 min-w-0 w-full overflow-hidden border border-(--display-color)/40 bg-(--grid)/60 p-2 sm:p-3"
+          style={`--display-color: ${color}`}
+        >
+          <div class="flex h-full min-h-0 flex-col gap-3">
+            <ProjectDetails
+              {technologies}
+              {features}
+              {status}
+              {type}
+              {duration}
+              {color}
+            />
+
+            <ProjectLinks
+              github={project.github}
+              demo={project.demo}
+              title={title}
+              color={color}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-header {
+    --aug-border-all: 1px;
+    --aug-border-bg: color-mix(in srgb, var(--display-color) 60%, transparent);
+  }
+  .project-border-main {
+    --aug-border-all: 2px;
+    --aug-border-bg: var(--display-color);
+  }
+</style>

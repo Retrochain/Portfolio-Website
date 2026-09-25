@@ -1,4 +1,5 @@
 ---
+import { projects } from "../../data/projects";
 import ProjectDisplay from "../stylization/ProjectDisplay.astro";
 import PlusDecoration from "../stylization/Plus.astro";
 import HoneyCombs from "../stylization/HoneyCombs.astro";
@@ -15,7 +16,7 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
     class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-90vh w-19/20 gap-1 px-4 py-3 z-10"
   >
     <h2
-      class="absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-2 sm:block lg:-right-155 text-[12rem] z-15"
+      class="pointer-events-none absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-2 sm:block lg:-right-155 text-[12rem] z-10"
     >
       PROJECTS
     </h2>
@@ -47,30 +48,7 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
     <div
       class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-start shadow-2xl/40 z-10"
     >
-      <ProjectDisplay
-        img="/UTDAttendanceApp.png"
-        gif="/UTDAttendanceApp.gif"
-        border="tl-rect l-rect-y border"
-        title="Project 3"
-        description="Attendance Application/Website"
-        color="#FF0026"
-      />
-      <ProjectDisplay
-        img="/WhatsTheWeather.png"
-        gif="/WhatsTheWeather.gif"
-        border="tl-clip-y bl-clip l-rect-y border"
-        title="Project 1"
-        description="What's The Weather!"
-        color="#005EFF"
-      />
-      <ProjectDisplay
-        img="/BirthdayCalendar.png"
-        gif="/BirthdayCalendar.gif"
-        border="tl-clip bl-rect l-rect border"
-        title="Project 2"
-        description="Birthday Calendar"
-        color="#A9f51B"
-      />
+      {projects.map((project) => <ProjectDisplay project={project} />)}
     </div>
   </div>
   <div class="lg:block hidden">

@@ -1,56 +1,121 @@
 ---
-const {
-  img,
-  gif,
-  border,
-  title,
-  description,
-  color = "var(--secondary)",
-} = Astro.props;
+import type { Project } from "../../data/projects";
+import ProjectModal from "../projects/ProjectModal.astro";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const { title, img, gif, color, border } = project;
 ---
 
+<!-- We create a grid to display our projects -->
 <div
-  class="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-1 gap-y-1"
+  class="project-display grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] gap-x-1 gap-y-1"
   style={`--display-color: ${color}`}
 >
+  <!-- Each project has a left stylized border -->
   <div
     data-augmented-ui={border}
-    class="project-border-main col-start-1 row-start-1 w-full h-full bg-(--display-color)/40 pb-2"
+    class="project-display-grid-main col-start-1 row-start-1 h-full w-full bg-(--display-color)/40 pb-2"
   >
   </div>
-  <div
-    class="group relative col-start-2 row-start-1 min-w-0 w-full border border-(--display-color)/60 bg-black/30 overflow-hidden"
+
+  <!-- A clickable project image that when hovered on desktop shows a gif of the project and only shows the gif on mobile -->
+  <button
+    type="button"
+    class="open-button group relative col-start-2 row-start-1 min-w-0 w-full overflow-hidden border border-(--display-color)/60 bg-black/30"
+    aria-label={`Open ${title}`}
   >
     <img
       src={img}
-      alt={title}
-      class="sm:block hidden w-full h-auto"
+      alt={`An image depicting ${title}`}
+      class="hidden h-auto w-full sm:block"
     />
+
     <img
       src={gif}
-      alt={title}
-      class="block w-full h-auto sm:absolute sm:inset-0 sm:w-full sm:h-full sm:object-contain sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100"
+      alt={`A gif depicting ${title}`}
+      aria-hidden="true"
+      class="block h-auto w-full sm:absolute sm:inset-0 sm:h-full sm:w-full sm:object-contain sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100"
     />
-  </div>
+  </button>
+
+  <!-- A small stylized border on the bottom left side -->
   <div
     data-augmented-ui="bl-clip border"
-    class="project-border-sub col-start-1 row-start-2 w-full h-8 bg-(--display-color)/40 pb-4 mb-8"
+    class="project-display-grid-sub col-start-1 row-start-2 mb-8 h-8 w-full bg-(--display-color)/40 pb-4"
   >
   </div>
-  <div
-    class="col-start-2 row-start-2 flex items-center justify-center border border-(--display-color)/60 bg-(--secondary)/90 px-2 mb-8 text-black font-bold"
+
+  <!-- And a project title underneath the image that is also clickable -->
+  <button
+    type="button"
+    class="open-button col-start-2 row-start-2 mb-8 flex min-w-0 w-full items-center justify-center border border-(--display-color)/60 bg-(--secondary)/90 px-2 text-center text-base font-extrabold text-black hover:border-(--display-color)/70 hover:bg-(--secondary) sm:text-lg"
+    aria-label={`Open ${title}`}
   >
-    {description}
-  </div>
+    {title}
+  </button>
+
+  <ProjectModal {project} />
 </div>
 
-<style>
-  .project-border-main {
-    --aug-border-all: 2px;
-    --aug-border-bg: var(--display-color);
-  }
+<script>
+  document.querySelectorAll(".project-display").forEach((projectDisplay) => {
+    const modal = projectDisplay.querySelector<HTMLElement>(".modal-popup");
 
-  .project-border-sub {
+    const openButtons =
+      projectDisplay.querySelectorAll<HTMLButtonElement>(".open-button");
+
+    const closeButton =
+      projectDisplay.querySelector<HTMLButtonElement>(".close-button");
+
+    const navbar = document.querySelector<HTMLElement>("#site-navbar");
+
+    if (!modal || !closeButton) return;
+
+    function openModal() {
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+      modal?.setAttribute("aria-hidden", "false");
+
+      navbar?.classList.add("hidden");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeModal() {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+      modal?.setAttribute("aria-hidden", "true");
+
+      navbar?.classList.remove("hidden");
+      document.body.classList.remove("modal-open");
+    }
+
+    openButtons.forEach((button) => {
+      button.addEventListener("click", openModal);
+    });
+
+    closeButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+<style>
+  .project-display,.project-display-grid-main,.project-display-grid-sub {
     --aug-border-all: 2px;
     --aug-border-bg: var(--display-color);
   }
