@@ -48,6 +48,10 @@ body {
     font-size: var(--font-size-main);
 }
 
+html.modal-open {
+    overflow: hidden;
+}
+
 
 /*We create a pseudo-element to simulate a grid background by creating two repeating linear gradients, one vertical and one horizontal*/
 body::before {

@@ -35,7 +35,7 @@ const titleId = `${modalId}-title`;
   aria-modal="true"
   aria-hidden="true"
   aria-labelledby={titleId}
-  class="modal-popup fixed inset-0 z-90 hidden items-start justify-center overflow-y-auto overflow-x-hidden bg-black/80 p-2 sm:items-center sm:p-4"
+  class="modal-popup fixed inset-0 z-90 hidden items-start justify-center overflow-y-auto overflow-x-hidden bg-black/80 p-2 sm:p-4 lg:items-center"
 >
   <div class="flex w-full min-w-0 max-w-7xl flex-col items-start">
     <!-- This is the modal header mostly for decoration -->
@@ -56,7 +56,7 @@ const titleId = `${modalId}-title`;
     <!-- This is the actual main modal where all the information goes -->
 
     <div
-      class="relative grid min-h-max w-full min-w-0 grid-cols-1 gap-4 border border-(--primary)/70 bg-(--grid)/70 p-3 shadow-2xl/40 sm:min-h-0 sm:max-h-[92dvh] sm:overflow-hidden sm:p-4 md:p-5 lg:h-[85dvh] lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]"
+      class="relative grid min-h-max w-full min-w-0 grid-cols-1 gap-4 border border-(--primary)/70 bg-(--grid)/70 p-3 shadow-2xl/40 sm:p-4 md:p-5 lg:h-[85dvh] lg:min-h-0 lg:max-h-[92dvh] lg:overflow-hidden lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]"
     >
       <!-- A standard close button -->
 
