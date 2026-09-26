@@ -20,7 +20,7 @@ const githubLinks = github ? (Array.isArray(github) ? github : [github]) : [];
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex min-h-10 w-full min-w-0 items-center justify-center overflow-hidden border border-(--display-color)/60 bg-(--secondary)/90 px-2 text-center text-base font-extrabold text-black hover:border-(--display-color)/70 hover:bg-(--secondary) sm:text-lg"
+        class="flex min-h-10 w-full min-w-0 items-center justify-center overflow-hidden border border-(--display-color)/60 bg-(--secondary)/90 px-2 text-center text-xl font-extrabold text-black hover:border-(--display-color)/70 hover:bg-(--secondary) sm:text-lg"
         aria-label={`Open GitHub repository ${index + 1} for ${title}`}
       >
         GitHub Repo{githubLinks.length > 1 ? ` ${index + 1}` : ""} -&gt;
@@ -36,7 +36,7 @@ const githubLinks = github ? (Array.isArray(github) ? github : [github]) : [];
         href={demo}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex min-h-10 w-full min-w-0 items-center justify-center overflow-hidden border border-(--display-color)/60 bg-(--secondary)/90 px-2 text-center text-base font-extrabold text-black hover:border-(--display-color)/70 hover:bg-(--secondary) sm:text-lg"
+        class="flex min-h-10 w-full min-w-0 items-center justify-center overflow-hidden border border-(--display-color)/60 bg-(--secondary)/90 px-2 text-center text-xl font-extrabold text-black hover:border-(--display-color)/70 hover:bg-(--secondary) sm:text-lg"
         aria-label={`Open live website for ${title}`}
       >
         Live Website -&gt;
