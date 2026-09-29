@@ -76,7 +76,10 @@ const { title, img, gif, color, border } = project;
 
     if (!modal || !closeButton) return;
 
+    const modalParent = modal.parentElement;
+
     function openModal() {
+      document.body.append(modal!);
       modal?.classList.remove("hidden");
       modal?.classList.add("flex");
       modal?.setAttribute("aria-hidden", "false");
@@ -90,6 +93,7 @@ const { title, img, gif, color, border } = project;
       modal?.classList.add("hidden");
       modal?.classList.remove("flex");
       modal?.setAttribute("aria-hidden", "true");
+      modalParent?.append(modal!);
 
       navbar?.classList.remove("hidden");
       document.body.classList.remove("modal-open");
