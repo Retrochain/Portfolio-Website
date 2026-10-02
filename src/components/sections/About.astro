@@ -1,293 +1,279 @@
 ---
 import Barcode from "../stylization/Barcode.astro";
 import PlusDecoration from "../stylization/Plus.astro";
+
+import DetailCard from "../ui/DetailCard.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+import InfoPanel from "../ui/InfoPanel.astro";
+
+import DisplayGrid from "../picture-grid/DisplayGrid.astro";
 ---
 
 <div
   id="about"
-  class="relative overflow-hidden pt-12 pb-18 mx-auto min-h-90vh w-19/20"
+  class="relative mx-auto min-h-[90vh] w-19/20
+    overflow-hidden
+    pt-12 pb-18"
 >
-  <!-- We first create a bunch of decorative elements such as lines and squares -->
+  <!-- Decorative lines -->
   <div
-    class="absolute top-30 left-4 w-64 h-px bg-(--primary) pointer-events-none"
+    class="pointer-events-none absolute left-4 top-27 h-px w-64 bg-(--primary)"
   >
-  </div>
-  <div
-    class="absolute top-32 left-16 w-64 h-px bg-(--primary) pointer-events-none"
-  >
-  </div>
-  <div
-    class="absolute bottom-6 right-4 w-full h-px bg-(--primary) pointer-events-none"
-  >
-  </div>
-  <div
-    class="absolute bottom-6 right-2 w-px h-160 md:h-120 lg:h-full bg-(--primary) pointer-events-none"
-  >
-  </div>
-  <div
-    class="block md:hidden absolute bottom-6 left-2 w-px h-160 bg-(--primary) pointer-events-none"
-  >
-  </div>
-  <div
-    class="lg:block hidden absolute w-4 h-4 aspect-square top-0 right-0 bg-(--primary)"
-  >
-  </div>
-  <div class="absolute w-4 h-4 aspect-square bottom-4 right-0 bg-(--primary)">
-  </div>
-  <div class="absolute w-4 h-4 aspect-square bottom-4 left-0 bg-(--primary)">
   </div>
 
-  <!-- Some decorative text strings -->
+  <div
+    class="pointer-events-none absolute left-16 top-28 h-px w-64 bg-(--primary)"
+  >
+  </div>
+
+  <div
+    class="pointer-events-none absolute bottom-6 right-4 h-px w-full bg-(--primary)"
+  >
+  </div>
+
+  <div
+    class="pointer-events-none absolute bottom-6 right-2 h-160 w-px
+      bg-(--primary)
+      md:h-120
+      lg:h-full"
+  >
+  </div>
+
+  <div
+    class="pointer-events-none absolute bottom-6 left-2 h-160 w-px
+      bg-(--primary)
+      md:hidden"
+  >
+  </div>
+
+  <!-- Decorative squares -->
+  <div
+    class="absolute right-0 top-0 hidden aspect-square h-4 w-4
+      bg-(--primary)
+      lg:block"
+  >
+  </div>
+
+  <div class="absolute bottom-4 right-0 aspect-square h-4 w-4 bg-(--primary)">
+  </div>
+
+  <div class="absolute bottom-4 left-0 aspect-square h-4 w-4 bg-(--primary)">
+  </div>
+
+  <!-- Decorative labels -->
   <h4
-    class="absolute right-4 bottom-7 whitespace-nowrap text-(--decor) text-[1.5rem]"
+    class="absolute bottom-7 right-4
+      whitespace-nowrap text-[1.5rem] text-(--decor)"
   >
     //INFO_SEC_INIT
   </h4>
+
   <h4
-    class="absolute top-2 md:top-6 right-2 md:right-6 whitespace-nowrap text-(--decor) text-[1.5rem]"
+    class="absolute right-2 top-2
+      whitespace-nowrap text-[1.5rem] text-(--decor)
+      md:right-6 md:top-6"
   >
     //DISP_PROFILE
   </h4>
-  <div class="md:block hidden text-(--decor)">
+
+  <div class="hidden text-(--decor) md:block">
     <Barcode top={64} right={24} rotated={false} />
   </div>
 
-  <!-- Decorative plus signs based on screen size -->
-  <div class="md:block hidden">
+  <!-- Desktop plus decorations -->
+  <div class="hidden md:block">
     <PlusDecoration bottom={35} left={525} size={20} />
     <PlusDecoration bottom={35} left={550} size={20} />
     <PlusDecoration bottom={35} left={575} size={20} />
     <PlusDecoration bottom={35} left={600} size={20} />
     <PlusDecoration bottom={35} left={625} size={20} />
+
     <PlusDecoration bottom={60} left={500} size={20} />
     <PlusDecoration bottom={60} left={525} size={20} />
     <PlusDecoration bottom={60} left={550} size={20} />
     <PlusDecoration bottom={60} left={575} size={20} />
+
     <PlusDecoration bottom={85} left={525} size={20} />
     <PlusDecoration bottom={85} left={550} size={20} />
 
     <PlusDecoration top={25} right={350} size={20} />
     <PlusDecoration top={25} right={375} size={20} />
+
     <PlusDecoration top={50} right={325} size={20} />
     <PlusDecoration top={50} right={350} size={20} />
     <PlusDecoration top={50} right={375} size={20} />
     <PlusDecoration top={50} right={400} size={20} />
     <PlusDecoration top={50} right={425} size={20} />
+
     <PlusDecoration top={75} right={275} size={20} />
     <PlusDecoration top={75} right={300} size={20} />
     <PlusDecoration top={75} right={325} size={20} />
     <PlusDecoration top={75} right={350} size={20} />
     <PlusDecoration top={75} right={375} size={20} />
     <PlusDecoration top={75} right={400} size={20} />
+
     <PlusDecoration top={100} right={325} size={20} />
     <PlusDecoration top={100} right={350} size={20} />
     <PlusDecoration top={100} right={400} size={20} />
+
     <PlusDecoration top={125} right={325} size={20} />
   </div>
 
-  <div class="block md:hidden">
+  <!-- Mobile plus decorations -->
+  <div class="md:hidden">
     <PlusDecoration bottom={800} left={25} size={20} />
     <PlusDecoration bottom={800} left={50} size={20} />
+
     <PlusDecoration bottom={775} left={25} size={20} />
     <PlusDecoration bottom={775} left={50} size={20} />
     <PlusDecoration bottom={775} left={75} size={20} />
+
     <PlusDecoration bottom={750} left={0} size={20} />
     <PlusDecoration bottom={750} left={25} size={20} />
+
     <PlusDecoration bottom={725} left={0} size={20} />
     <PlusDecoration bottom={725} left={25} size={20} />
 
     <PlusDecoration top={45} right={50} size={20} />
     <PlusDecoration top={45} right={75} size={20} />
     <PlusDecoration top={45} right={100} size={20} />
+
     <PlusDecoration top={70} right={25} size={20} />
     <PlusDecoration top={70} right={50} size={20} />
     <PlusDecoration top={70} right={75} size={20} />
+
     <PlusDecoration top={95} right={50} size={20} />
     <PlusDecoration top={95} right={75} size={20} />
+
     <PlusDecoration top={120} right={50} size={20} />
   </div>
 
-  <!-- A grid of small circles -->
+  <!-- Decorative dot grid -->
   <div
-    class="absolute left-32 top-208 md:top-20 md:left-80 w-2/3 h-20
-      bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[8px_8px]
-      md:w-1/3 md:h-32 md:bg-[radial-gradient(var(--primary)_1px,transparent_1px)] md:bg-size-[16px_16px] -z-1"
+    class="absolute left-32 top-208 -z-1
+      h-20 w-2/3
+      bg-[radial-gradient(var(--primary)_1px,transparent_1px)]
+      bg-size-[8px_8px]
+      md:left-80 md:top-20
+      md:h-32 md:w-1/3
+      md:bg-[radial-gradient(var(--primary)_1px,transparent_1px)]
+      md:bg-size-[16px_16px]"
   >
   </div>
 
-  <!-- Main heading of the page -->
-  <h2 class="relative z-10 text-(--secondary) font-extrabold text-(length:--font-size-pageheading) pb-6 pl-4">
-    ABOUT ME
-  </h2>
+  <!-- Section heading -->
+  <SectionHeader title="ABOUT ME" />
 
-  <!-- Now we create a responsive grid to hold three things: an image, a biography, amd some detail floats -->
+  <!-- Main content -->
   <div
-    class="relative z-10 grid items-start gap-6 lg:grid-cols-[minmax(18rem,1fr)_minmax(20rem,1.2fr)_minmax(12rem,0.9fr)] 2xl:grid-cols-[minmax(18rem,28rem)_minmax(20rem,1.2fr)_minmax(12rem,22rem)]"
+    class="relative z-10 grid items-start gap-6
+      lg:grid-cols-[minmax(18rem,1fr)_minmax(20rem,1.2fr)_minmax(12rem,0.9fr)]
+      2xl:grid-cols-[minmax(18rem,28rem)_minmax(20rem,1.2fr)_minmax(12rem,22rem)]"
   >
-    <!-- First we create an image grid much like the project display grids -->
-    <div
-      class="project-display grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] grid-rows-[minmax(0,1fr)_2rem] gap-x-1 gap-y-1"
-    >
-      <div
-        data-augmented-ui="tl-rect-y l-rect border"
-        class="project-display-grid-main col-start-1 row-start-1 h-auto w-full bg-(--primary)/40"
-      >
-      </div>
+    <!-- Profile image -->
+    <DisplayGrid color="var(--primary)">
+      <img
+        slot="content"
+        src="/about-me-pic.jpg"
+        alt="A picture depicting the author of the website wearing an orange turban holding a bouquet of flowers during their UTD graduation."
+        class="block h-auto w-full object-contain object-center"
+      />
 
       <div
-        class="col-start-2 row-start-1 min-h-0 min-w-0 overflow-hidden border-2 border-(--primary) bg-black/30"
-      >
-        <img
-          src="/about-me-pic.jpg"
-          alt="A picture depicting the author of the website wearing an orange turban holding a bouquet of flowers during their UTD graduation."
-          class="block h-auto w-full object-contain object-center"
-        />
-      </div>
-
-      <div
-        data-augmented-ui="bl-rect border"
-        class="project-display-grid-sub col-start-1 row-start-2 h-full w-full bg-(--primary)/40"
-      >
-      </div>
-
-      <div
+        slot="footer"
         data-augmented-ui="br-clip-x b-rect border"
-        class="project-display-grid-footer col-start-2 row-start-2 bg-(--primary)/40"
+        class="h-full w-full bg-(--display-color)/40"
+        style="--aug-border-all: 2px; --aug-border-bg: var(--display-color)"
       >
       </div>
-    </div>
+    </DisplayGrid>
 
-    <!-- Then a biography section modeled after the project modal display -->
-    <div class="flex min-w-0 flex-col">
-      <div
-        data-augmented-ui="tr-clip border"
-        class="bio-header flex min-h-10 w-2/5 sm:w-1/3 md:w-2/7 lg:w-2/5 items-center px-4 py-2 text-2xl font-extrabold text-(--secondary) leading-tight bg-(--grid)/60"
-      >
-        //BIOGRAPHY
-      </div>
-
-      <div
-        class="flex min-h-0 min-w-0 flex-1 flex-col border border-(--primary)/60 bg-(--grid)/40 p-5 text-xl"
-      >
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-          lectus erat, ornare vitae efficitur ut, vehicula sit amet diam. Donec
-          aliquam leo lacus. Morbi ultricies orci et pulvinar molestie. Interdum
-          et malesuada fames ac ante ipsum primis in faucibus. Mauris mi ante,
-          bibendum ac nulla quis, sagittis malesuada nisi. Quisque convallis
-          diam vitae diam ultrices pellentesque id eget augue.
-        </p>
-
-        <p class="mt-4">
-          In nulla risus, ultricies nec suscipit ac, lobortis et ante. Aenean
-          commodo sapien ligula, sit amet suscipit velit mattis et. Vivamus
-          posuere sed erat ac tempus.
-        </p>
-      </div>
-      <div
-        data-augmented-ui="bl-clip-x br-clip border"
-        class="bio-footer flex min-h-10 w-2/5 sm:w-1/3 md:w-2/7 lg:w-2/5 items-end justify-end self-end px-4 py-2 text-xl leading-tight text-(--decor) bg-(--grid)/60"
-      >
-        //BIO_NODE
-      </div>
-    </div>
-
-    <!-- Then three containers and a button to check out our resume -->
-    <div
-      class="grid min-w-0 grid-cols-1 content-start gap-3 uppercase sm:grid-cols-2 lg:grid-cols-1 mr-8 ml-8 md:ml-0 "
+    <!-- Biography -->
+    <InfoPanel
+      title="//BIOGRAPHY"
+      footer="//BIO_NODE"
+      headerClip="tr"
+      footerClip="bl-clip-x br-clip border"
     >
-      <!-- A custom polygon resume button which opens up the resume pdf -->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus
+        erat, ornare vitae efficitur ut, vehicula sit amet diam. Donec aliquam
+        leo lacus.
+      </p>
+
+      <p class="mt-4">
+        In nulla risus, ultricies nec suscipit ac, lobortis et ante. Aenean
+        commodo sapien ligula, sit amet suscipit velit mattis et.
+      </p>
+    </InfoPanel>
+
+    <!-- Resume + details -->
+    <div
+      class="mr-8 ml-8 grid min-w-0 grid-cols-1
+        content-start gap-3 uppercase
+        sm:grid-cols-2
+        md:ml-0
+        lg:grid-cols-1"
+    >
+      <!-- Resume -->
       <a
         href="/Akshaan_Resume_2026.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex max-h-10 items-center justify-center text-center border-2 border-(--secondary) bg-(--secondary)/90 hover:bg-(--secondary) text-black font-extrabold text-2xl py-2 [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)] sm:col-span-2 lg:col-span-1"
-        aria-label={`Open Resume`}
+        class="flex max-h-10 items-center justify-center
+          border-2 border-(--secondary)
+          bg-(--secondary)/90
+          py-2
+          text-center text-2xl font-extrabold text-black
+          hover:bg-(--secondary)
+          [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)]
+          sm:col-span-2
+          lg:col-span-1"
+        aria-label="Open Resume"
       >
         //RESUME
       </a>
 
-      <!-- A detail block giving basic information about ourselves -->
-      <dl
-        class="about-details flex min-h-30 flex-col justify-between gap-2 border-2 border-dashed border-(--primary) bg-(--primary)/20 p-4 text-xl font-bold wrap-break-word lg:leading-4.5"
-      >
-        <div>
-          <dt class="inline text-(--secondary)">Name: </dt>
-          <dd class="inline">AKSHAAN SINGH</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">Location: </dt>
-          <dd class="inline">Coppell, TX</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">DOB: </dt>
-          <dd class="inline">May 6th, 2003</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">Age: </dt>
-          <dd class="inline">23</dd>
-        </div>
-      </dl>
+      <!-- Basic information -->
+      <DetailCard
+        items={[
+          { label: "Name", value: "AKSHAAN SINGH" },
+          { label: "Location", value: "Coppell, TX" },
+          { label: "DOB", value: "May 6th, 2003" },
+          { label: "Age", value: "23" },
+        ]}
+      />
 
-      <!-- A detail block listing our contact information -->
-      <dl
-        class="about-details flex min-h-40 flex-col justify-between gap-2 border-2 border-dashed border-(--primary) bg-(--primary)/20 p-4 text-xl font-bold wrap-break-word lg:min-h-30 lg:leading-4.5"
-      >
-        <div>
-          <dt class="inline text-(--secondary)">Email: </dt>
-          <dd class="inline">akshaansingh.2018@gmail.com</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">Phone: </dt>
-          <dd class="inline">+1 (510) 458-9512</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">LinkedIn: </dt>
-          <dd class="inline">
-            <a
-              href="https://www.linkedin.com/in/akshaan-singh-2b4086255"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-(--text) underline underline-offset-4 hover:text-(--decor) focus-visible:outline-2 focus-visible:outline-offset-2"
-              >Click for LinkedIn</a
-            >
-          </dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">GitHub: </dt>
-          <dd class="inline">
-            <a
-              href="https://github.com/Retrochain/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-(--text) underline underline-offset-4 hover:text-(--decor) focus-visible:outline-2 focus-visible:outline-offset-2"
-              >Click for GitHub</a
-            >
-          </dd>
-        </div>
-      </dl>
+      <!-- Contact information -->
+      <DetailCard
+        items={[
+          { label: "Email", value: "akshaansingh.2018@gmail.com" },
+          { label: "Phone", value: "+1 (510) 458-9512" },
+          {
+            label: "LinkedIn",
+            value: "Click for LinkedIn",
+            href: "https://www.linkedin.com/in/akshaan-singh-2b4086255",
+          },
+          {
+            label: "GitHub",
+            value: "Click for GitHub",
+            href: "https://github.com/Retrochain/",
+          },
+        ]}
+      />
 
-      <!-- A detail block listing our interests -->
-      <dl
-        class="about-details flex min-h-40 flex-col justify-between gap-2 border-2 border-dashed border-(--primary) bg-(--primary)/20 p-4 text-xl font-bold wrap-break-word lg:min-h-30 lg:leading-4.5"
-      >
-        <div>
-          <dt class="inline text-(--secondary)">Interests: </dt>
-          <dd class="inline">Star Wars, Marvel/DC, Scott Pilgrim, Cyberpunk</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">Fav Game: </dt>
-          <dd class="inline">Cyberpunk 2077</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">Fav Movie: </dt>
-          <dd class="inline">Scott Pilgrim Vs The World</dd>
-        </div>
-        <div>
-          <dt class="inline text-(--secondary)">Fav Show: </dt>
-          <dd class="inline">Andor</dd>
-        </div>
-      </dl>
+      <!-- Interests -->
+      <DetailCard
+        items={[
+          {
+            label: "Interests",
+            value: "Star Wars, Marvel/DC, Scott Pilgrim, Cyberpunk",
+          },
+          { label: "Fav Game", value: "Cyberpunk 2077" },
+          { label: "Fav Movie", value: "Scott Pilgrim Vs The World" },
+          { label: "Fav Show", value: "Andor" },
+        ]}
+      />
     </div>
   </div>
 </div>
@@ -295,20 +281,6 @@ import PlusDecoration from "../stylization/Plus.astro";
 <style>
   h2 {
     font-family: var(--font-heading);
-  }
-
-  .project-display,
-  .project-display-grid-main,
-  .project-display-grid-sub,
-  .project-display-grid-footer {
-    --aug-border-all: 2px;
-    --aug-border-bg: var(--primary);
-  }
-
-  .bio-header,
-  .bio-footer {
-    --aug-border-all: 1px;
-    --aug-border-bg: color-mix(in srgb, var(--primary) 60%, transparent);
   }
 
   .about-details {
@@ -320,6 +292,7 @@ import PlusDecoration from "../stylization/Plus.astro";
     position: absolute;
     inset: -2px;
     pointer-events: none;
+
     background:
       linear-gradient(var(--decor), var(--decor)) top left / 1.5rem 3px,
       linear-gradient(var(--decor), var(--decor)) top left / 3px 1.5rem,
@@ -329,6 +302,7 @@ import PlusDecoration from "../stylization/Plus.astro";
       linear-gradient(var(--decor), var(--decor)) bottom left / 3px 1.5rem,
       linear-gradient(var(--decor), var(--decor)) bottom right / 1.5rem 3px,
       linear-gradient(var(--decor), var(--decor)) bottom right / 3px 1.5rem;
+
     background-repeat: no-repeat;
   }
 </style>

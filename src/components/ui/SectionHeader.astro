@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<div class="relative z-10">
+  <h2
+    class="text-(--secondary) font-extrabold text-(length:--font-size-pageheading)"
+  >
+    {title}
+  </h2>
+
+  {
+    subtitle && (
+      <h3 class="font-bold text-[1.75rem] md:text-[2rem] pb-6">{subtitle}</h3>
+    )
+  }
+</div>
+
+<style>
+  h2 {
+    font-family: var(--font-heading);
+  }
+</style>

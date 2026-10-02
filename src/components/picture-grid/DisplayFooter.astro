@@ -1,0 +1,37 @@
+---
+interface Props {
+  color?: string;
+  class?: string;
+}
+
+const { color = "var(--primary)", class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "display-footer grid min-w-0",
+    "grid-cols-[2rem_minmax(0,1fr)]",
+    "h-full gap-1",
+    className,
+  ]}
+  style={`--display-color: ${color}`}
+>
+  <!-- Decorative left column -->
+  <div
+    data-augmented-ui="bl-clip border"
+    class="display-footer-decoration min-h-8 w-full bg-(--display-color)/40"
+  >
+  </div>
+
+  <!-- Footer content -->
+  <div class="display-footer-content min-w-0">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .display-footer-decoration {
+    --aug-border-all: 2px;
+    --aug-border-bg: var(--display-color);
+  }
+</style>

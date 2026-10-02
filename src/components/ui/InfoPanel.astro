@@ -1,0 +1,59 @@
+---
+import PanelHeader from "./PanelHeader.astro";
+
+interface Props {
+  title: string;
+  footer?: string;
+  headerClip?: "tl" | "tr" | "bl" | "br";
+  footerClip?: string;
+  class?: string;
+}
+
+const {
+  title,
+  footer,
+  headerClip = "tr",
+  footerClip = "bl",
+  class: className = "",
+} = Astro.props;
+---
+
+<div class:list={["flex min-w-0 flex-col", className]}>
+  <PanelHeader
+    label={title}
+    clip={headerClip}
+    width="w-2/5 sm:w-1/3 md:w-2/7 lg:w-2/5"
+    class="p-0!"
+    headingClass="py-2 text-2xl"
+  />
+
+  <div
+    class="info-panel-content flex min-h-0 min-w-0 flex-1 flex-col
+      border border-(--primary)/60 bg-(--grid)/40 p-5 text-xl"
+  >
+    <slot />
+  </div>
+
+  <!-- Optional Footer -->
+  {
+    footer && (
+      <div
+        data-augmented-ui={
+          footerClip.includes("-clip") ? footerClip : `${footerClip}-clip border`
+        }
+        class="info-panel-footer flex min-h-10 w-2/5 sm:w-1/3 md:w-2/7 lg:w-2/5
+        items-end justify-end self-end px-4 py-2 text-xl leading-tight
+        text-(--decor) bg-(--grid)/60"
+      >
+        {footer}
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .info-panel-footer {
+    --aug-border-all: 1px;
+    --aug-border-bg: color-mix(in srgb, var(--primary) 60%, transparent);
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import DisplayFooter from "./DisplayFooter.astro";
+import DisplayFrame from "./DisplayFrame.astro";
+
+interface Props {
+  color?: string;
+  border?: string;
+  class?: string;
+}
+
+const {
+  color = "var(--primary)",
+  border = "tl-rect-y l-rect border",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "display-grid grid min-w-0",
+    "grid-cols-[2rem_minmax(0,1fr)]",
+    "grid-rows-[minmax(0,1fr)_2rem]",
+    "gap-1",
+    className,
+  ]}
+  style={`--display-color: ${color}; --aug-border-all: 2px; --aug-border-bg: ${color}`}
+>
+  <DisplayFrame {color} {border} class="col-span-2 row-start-1 min-h-0">
+    <slot name="content" />
+  </DisplayFrame>
+
+  <DisplayFooter {color} class="col-span-2 row-start-2 h-full">
+    <slot name="footer" />
+  </DisplayFooter>
+</div>

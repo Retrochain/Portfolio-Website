@@ -1,23 +1,288 @@
 ---
-
+import SectionHeader from "../ui/SectionHeader.astro";
+import DetailCard from "../ui/DetailCard.astro";
+import PanelHeader from "../ui/PanelHeader.astro";
+import Honeycomb from "../stylization/HoneyCombs.astro";
 ---
 
-<div id="contact"
-  class="relative overflow-hidden pt-12 pb-18 mx-auto min-h-90vh w-19/20">
-  <h2 class="relative z-10 text-(--secondary) font-extrabold text-(length:--font-size-pageheading) pl-4">CONTACT ME</h2>
+<div
+  id="contact"
+  class="relative mx-auto min-h-[90vh] w-19/20
+    overflow-hidden
+    pt-12 pb-18 pl-6"
+>
+  <div
+    class="pointer-events-none absolute bottom-6 left-2 w-px bg-(--primary) h-full"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute bottom-6 right-0 h-px w-full bg-(--primary)"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute left-0 bottom-4 aspect-square h-4 w-4 bg-(--primary)"
+  >
+  </div>
 
-  <div>
-    <div>
-      <h3 class="font-bold text-[1.75rem] md:text-[2rem] z-10 pl-4">//Want to reach out to me?</h3>
-      <h4 class="font-bold text-[1.25rem] md:text-[1.5rem] z-10 pb-6 pl-4">//Contact me today!</h4>
-      <div></div>
+  <h4
+    class="pointer-events-none absolute bottom-6 left-6 whitespace-nowrap text-[1.5rem] text-(--decor)"
+  >
+    //NODE_END
+  </h4>
+  <h4
+    class="pointer-events-none absolute top-2 right-2 whitespace-nowrap text-[1.5rem] text-(--decor)"
+  >
+    //LOAD_CONTACT_FORM
+  </h4>
+
+  <h2
+    class="pointer-events-none absolute select-none text-(--text)/20 font-extrabold left-50 md:left-58 bottom-22 md:bottom-15 text-[12rem] z-1 [writing-mode:vertical-lr]"
+  >
+    FORM
+  </h2>
+
+  <div
+    class="absolute top-120 right-0 w-full h-2/3 -z-1
+      bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size-[56px_56px]"
+  >
+  </div>
+
+  <div class="pointer-events-none absolute inset-0 hidden lg:block">
+    <Honeycomb top={77} right={70} size={34} />
+    <Honeycomb top={77} right={130} size={34} />
+    <Honeycomb top={100} right={100} size={34} />
+    <Honeycomb top={100} right={160} size={34} />
+    <Honeycomb top={123} right={70} size={34} />
+    <Honeycomb top={123} right={130} size={34} />
+    <Honeycomb top={146} right={100} size={34} />
+    <Honeycomb top={146} right={160} size={34} />
+    <Honeycomb top={169} right={70} size={34} />
+    <Honeycomb top={169} right={130} size={34} />
+    <Honeycomb top={169} right={190} size={34} />
+    <Honeycomb top={192} right={100} size={34} />
+    <Honeycomb top={192} right={160} size={34} />
+    <Honeycomb top={215} right={70} size={34} />
+    <Honeycomb top={215} right={130} size={34} />
+    <Honeycomb top={238} right={100} size={34} />
+    <Honeycomb top={238} right={160} size={34} />
+  </div>
+
+  <!-- Section heading -->
+  <SectionHeader
+    title="CONTACT ME"
+    subtitle="//Want to get in touch? Fill out the form below"
+  />
+
+  <!-- Contact content -->
+  <div
+    class="relative z-10 grid items-start gap-6
+      lg:grid-cols-[minmax(12rem,0.75fr)_minmax(24rem,2fr)]
+      2xl:grid-cols-[minmax(16rem,0.8fr)_minmax(32rem,2fr)]"
+  >
+    <!-- Contact information -->
+    <div class="grid min-w-0 gap-3 uppercase">
+      <DetailCard
+        items={[
+          {
+            label: "Email",
+            value: "akshaansingh.2018@gmail.com",
+            href: "mailto:akshaansingh.2018@gmail.com",
+          },
+          {
+            label: "Phone",
+            value: "+1 (510) 458-9512",
+          },
+          {
+            label: "LinkedIn",
+            value: "Click for LinkedIn",
+            href: "https://www.linkedin.com/in/akshaan-singh-2b4086255",
+          },
+          {
+            label: "GitHub",
+            value: "Click for GitHub",
+            href: "https://github.com/Retrochain/",
+          },
+        ]}
+      />
+
+      <!-- Small decorative status box -->
+      <div
+        class="comm-node hidden min-h-24
+          bg-(--grid)/40
+          p-6
+          text-(--decor)
+          lg:block"
+        data-augmented-ui="br-clip-y border"
+      >
+        <p class="text-xl font-bold tracking-widest">//COMM_NODE</p>
+
+        <p class="mt-2 text-xl text-(--text)">
+          Open to conversations, collaborations, and interesting projects.
+        </p>
+      </div>
     </div>
-    <div>Contact Form</div>
+
+    <!-- Contact form -->
+    <div class="min-w-0">
+      <PanelHeader
+        label="//CONTACT_FORM"
+        width="w-3/5 sm:w-1/3 md:w-2/5 lg:w-1/4"
+      />
+
+      <form
+        action="#"
+        method="POST"
+        class="min-w-0
+      border border-(--primary)/60
+      bg-(--grid)/40
+      p-4
+      sm:p-6"
+      >
+        <div class="grid min-w-0 gap-4">
+          <!-- Name + Email -->
+          <div class="grid min-w-0 gap-4 md:grid-cols-2">
+            <label class="flex min-w-0 flex-col gap-2">
+              <span
+                class="text-lg font-bold tracking-widest text-(--secondary)"
+              >
+                //NAME
+              </span>
+
+              <input
+                type="text"
+                name="name"
+                autocomplete="name"
+                required
+                placeholder="ENTER YOUR NAME"
+                class="min-w-0 w-full
+              border border-(--primary)/60
+              bg-black/40
+              px-4 py-3
+              text-(--text)
+              outline-none
+              placeholder:text-(--decor)/60
+              focus:border-(--secondary)
+              focus:ring-1 focus:ring-(--secondary)"
+              />
+            </label>
+
+            <label class="flex min-w-0 flex-col gap-2">
+              <span
+                class="text-lg font-bold tracking-widest text-(--secondary)"
+              >
+                //EMAIL
+              </span>
+
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                required
+                placeholder="ENTER YOUR EMAIL"
+                class="min-w-0 w-full
+              border border-(--primary)/60
+              bg-black/40
+              px-4 py-3
+              text-(--text)
+              outline-none
+              placeholder:text-(--decor)/60
+              focus:border-(--secondary)
+              focus:ring-1 focus:ring-(--secondary)"
+              />
+            </label>
+          </div>
+
+          <!-- Subject -->
+          <label class="flex min-w-0 flex-col gap-2">
+            <span class="text-lg font-bold tracking-widest text-(--secondary)">
+              //SUBJECT
+            </span>
+
+            <input
+              type="text"
+              name="subject"
+              required
+              placeholder="ENTER MESSAGE SUBJECT"
+              class="min-w-0 w-full
+            border border-(--primary)/60
+            bg-black/40
+            px-4 py-3
+            text-(--text)
+            outline-none
+            placeholder:text-(--decor)/60
+            focus:border-(--secondary)
+            focus:ring-1 focus:ring-(--secondary)"
+            />
+          </label>
+
+          <!-- Message -->
+          <label class="flex min-w-0 flex-col gap-2">
+            <span class="text-lg font-bold tracking-widest text-(--secondary)">
+              //MESSAGE
+            </span>
+
+            <textarea
+              name="message"
+              rows="8"
+              required
+              placeholder="ENTER YOUR MESSAGE"
+              class="min-h-48 min-w-0 w-full resize-y
+            border border-(--primary)/60
+            bg-black/40
+            px-4 py-3
+            text-(--text)
+            outline-none
+            placeholder:text-(--decor)/60
+            focus:border-(--secondary)
+            focus:ring-1 focus:ring-(--secondary)"
+            ></textarea>
+          </label>
+
+          <!-- Submit -->
+          <div
+            class="flex items-center justify-between gap-4
+          border-t border-(--primary)/40
+          pt-4"
+          >
+            <span
+              class="hidden text-lg font-bold
+            tracking-widest text-(--decor)
+            sm:block"
+            >
+              //TRANSMISSION_READY
+            </span>
+
+            <button
+              type="submit"
+              class="ml-auto
+            border-2 border-(--secondary)
+            bg-(--secondary)/90
+            px-8 py-1
+            text-lg font-extrabold
+            text-black
+            transition-colors
+            hover:bg-(--secondary)
+            focus:outline-none
+            focus:ring-2
+            focus:ring-(--secondary)
+            [clip-path:polygon(0%_0%,90%_0%,100%_100%,0%_100%)]"
+            >
+              SEND //
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
 <style>
   h2 {
     font-family: var(--font-heading);
+  }
+
+  .comm-node {
+    --aug-border-all: 1px;
+    --aug-border-bg: var(--decor);
   }
 </style>

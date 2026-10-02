@@ -1,0 +1,61 @@
+---
+interface DetailItem {
+  label: string;
+  value: string;
+  href?: string;
+}
+interface Props {
+  items: DetailItem[];
+}
+const { items } = Astro.props;
+---
+
+<dl
+  class="about-details flex min-h-30 flex-col justify-between gap-2 border-2 border-dashed border-(--primary) bg-(--primary)/20 p-4 text-xl font-bold wrap-break-word lg:leading-4.5"
+>
+  {
+    items.map(({ label, value, href }) => (
+      <div>
+        {" "}
+        <dt class="inline text-(--secondary)">{label}: </dt>{" "}
+        <dd class="inline">
+          {" "}
+          {href ? (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-(--text) underline underline-offset-4 hover:text-(--decor) focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              {" "}
+              {value}{" "}
+            </a>
+          ) : (
+            value
+          )}{" "}
+        </dd>{" "}
+      </div>
+    ))
+  }
+</dl>
+<style>
+  .about-details {
+    position: relative;
+  }
+  .about-details::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--decor), var(--decor)) top left / 1.5rem 3px,
+      linear-gradient(var(--decor), var(--decor)) top left / 3px 1.5rem,
+      linear-gradient(var(--decor), var(--decor)) top right / 1.5rem 3px,
+      linear-gradient(var(--decor), var(--decor)) top right / 3px 1.5rem,
+      linear-gradient(var(--decor), var(--decor)) bottom left / 1.5rem 3px,
+      linear-gradient(var(--decor), var(--decor)) bottom left / 3px 1.5rem,
+      linear-gradient(var(--decor), var(--decor)) bottom right / 1.5rem 3px,
+      linear-gradient(var(--decor), var(--decor)) bottom right / 3px 1.5rem;
+    background-repeat: no-repeat;
+  }
+</style>

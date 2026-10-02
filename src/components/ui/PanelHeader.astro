@@ -1,0 +1,48 @@
+---
+interface Props {
+  label: string;
+  color?: string;
+  class?: string;
+  width?: string;
+  align?: "start" | "end";
+  clip?: "tl" | "tr" | "bl" | "br";
+  headingClass?: string;
+}
+
+const {
+  label,
+  color = "var(--primary)",
+  class: className = "",
+  width = "w-2/5",
+  align = "start",
+  clip = "tr",
+  headingClass = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "panel-header bg-(--grid)/60 px-2 py-1",
+    width,
+    align === "end" && "ml-auto",
+    className,
+  ]}
+  data-augmented-ui={`${clip}-clip border`}
+  style={`--display-color: ${color}`}
+>
+  <h3
+    class:list={[
+      "flex min-h-10 items-center px-4 text-xl font-extrabold leading-tight text-(--secondary)",
+      headingClass,
+    ]}
+  >
+    {label}
+  </h3>
+</div>
+
+<style>
+  .panel-header {
+    --aug-border-all: 1px;
+    --aug-border-bg: color-mix(in srgb, var(--display-color) 60%, transparent);
+  }
+</style>

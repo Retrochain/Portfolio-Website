@@ -1,8 +1,9 @@
 ---
 import { projects } from "../../data/projects";
-import ProjectDisplay from "../stylization/ProjectDisplay.astro";
+import ProjectDisplay from "../ui/ProjectDisplay.astro";
 import PlusDecoration from "../stylization/Plus.astro";
 import HoneyCombs from "../stylization/HoneyCombs.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 ---
 
 <div id="projects" class="relative pt-12 pb-18 overflow-hidden">
@@ -16,7 +17,7 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
     class="mx-auto flex flex-col items-start justify-center text-left border border-(--primary)/60 bg-(--grid)/40 shadow-xl/40 min-h-90vh w-19/20 gap-1 px-4 py-3 z-10"
   >
     <h2
-      class="pointer-events-none absolute select-none text-(--text)/30 font-extrabold hidden -right-235 md:-right-195 top-2 sm:block lg:-right-155 text-[12rem] z-10"
+      class="pointer-events-none absolute select-none text-(--text)/20 font-extrabold hidden -right-235 md:-right-195 top-2 sm:block lg:-right-155 text-[12rem] z-10"
     >
       PROJECTS
     </h2>
@@ -37,13 +38,7 @@ import HoneyCombs from "../stylization/HoneyCombs.astro";
       //CHECK_NODE_01
     </h4>
 
-    <h2 class="text-(--secondary) font-extrabold text-(length:--font-size-pageheading) z-10">PROJECTS</h2>
-    <h3 class="font-bold text-[1.75rem] md:text-[2rem] z-10">
-      //Some projects I've worked on
-    </h3>
-    <h4 class="font-bold text-[1.25rem] md:text-[1.5rem] pb-4 z-10">
-      //Click on a project to learn more
-    </h4>
+    <SectionHeader title="PROJECTS" subtitle="//Some projects I've worked on" />
 
     <div
       class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-start shadow-2xl/40 z-10"

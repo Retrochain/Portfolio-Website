@@ -1,0 +1,47 @@
+---
+interface Props {
+  color?: string;
+  border?: string;
+  class?: string;
+}
+
+const {
+  color = "var(--primary)",
+  border = "tl-rect-y l-rect border",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "display-frame grid min-w-0",
+    "grid-cols-[2rem_minmax(0,1fr)]",
+    "gap-1",
+    className,
+  ]}
+  style={`--display-color: ${color}`}
+>
+  <!-- Decorative left column -->
+  <div
+    data-augmented-ui={border}
+    class="display-frame-main h-full w-full bg-(--display-color)/40"
+  >
+  </div>
+
+  <!-- Content -->
+  <div
+    class="display-frame-content min-h-0 min-w-0
+      overflow-hidden
+      border border-(--display-color)/60
+      bg-black/30"
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  .display-frame-main {
+    --aug-border-all: 2px;
+    --aug-border-bg: var(--display-color);
+  }
+</style>
