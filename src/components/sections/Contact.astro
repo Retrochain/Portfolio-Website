@@ -131,9 +131,8 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
 
       <form
         id="contact-form"
-        action="mailto:akshaansingh.2018@gmail.com"
+        action="/api/contact"
         method="POST"
-        enctype="text/plain"
         class="min-w-0
       border border-(--primary)/60
       bg-(--grid)/40
@@ -240,6 +239,10 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
             ></textarea>
           </label>
 
+          <!-- Cloudflare Turnstile -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFMWj-g_P3z8UKke">
+          </div>
+
           <!-- Submit -->
           <div
             class="flex items-center justify-between gap-4
@@ -248,18 +251,12 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
           >
             <p
               id="contact-form-status"
-              class="sr-only"
+              class="text-lg font-bold tracking-widest text-(--decor)"
               role="status"
               aria-live="polite"
-            ></p>
-
-            <span
-              class="hidden text-lg font-bold
-            tracking-widest text-(--decor)
-            sm:block"
             >
               //TRANSMISSION_READY
-            </span>
+            </p>
 
             <button
               type="submit"
@@ -287,37 +284,70 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
 </div>
 
 <script>
+  type ContactResponse =
+    | {
+        success: true;
+      }
+    | {
+        success?: false;
+        error: string;
+      };
+
   const contactForm = document.querySelector<HTMLFormElement>("#contact-form");
+
   const contactFormStatus = document.querySelector<HTMLElement>(
     "#contact-form-status",
   );
 
-  contactForm?.addEventListener("submit", (event) => {
+  contactForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const name = String(formData.get("name") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const subject = String(formData.get("subject") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Subject: ${subject}`,
-      "",
-      message,
-    ].join("\n");
-    const mailtoUrl = new URL("mailto:akshaansingh.2018@gmail.com");
+    if (!contactFormStatus) return;
 
-    mailtoUrl.searchParams.set("subject", `Portfolio contact: ${subject}`);
-    mailtoUrl.searchParams.set("body", body);
+    contactFormStatus.classList.remove("sr-only");
+    contactFormStatus.textContent = "//TRANSMITTING...";
 
-    if (contactFormStatus) {
-      contactFormStatus.textContent =
-        "Your email app should open with the message ready to send.";
+    const submitButton = contactForm.querySelector<HTMLButtonElement>(
+      'button[type="submit"]',
+    );
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "SENDING...";
     }
 
-    window.location.href = mailtoUrl.toString();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: new FormData(contactForm),
+      });
+
+      const result = (await response.json()) as ContactResponse;
+
+      if (!response.ok) {
+        throw new Error(
+          "error" in result ? result.error : "Unable to send message.",
+        );
+      }
+
+      contactFormStatus.textContent = "//TRANSMISSION_SUCCESS";
+
+      contactForm.reset();
+
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
+    } catch (error) {
+      console.error(error);
+
+      contactFormStatus.textContent =
+        "//TRANSMISSION_FAILED — PLEASE TRY AGAIN";
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "SEND →";
+      }
+    }
   });
 </script>
 
