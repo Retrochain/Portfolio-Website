@@ -36,13 +36,13 @@ export const projects: Project[] = [
         border: "tl-rect l-rect-y border",
 
         overview:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Integer tincidunt, justo vitae tincidunt elementum, lorem ipsum tristique lectus, vitae feugiat sapien libero at erat.Donec vel neque vitae justo consequat sollicitudin.Aliquam erat volutpat.Cras interdum, massa vitae posuere tincidunt, augue neque faucibus nisl, vitae malesuada lectus neque sed erat",
+            "A full-stack attendance management system designed for students and professors. The project provides tools for recording and managing attendance, viewing attendance history, and keeping records synchronized across the application. It includes separate interfaces for students and professors, user authentication, and real-time updates to make attendance tracking more efficient and accessible.",
 
         technologies: [
             "VS MVC .NET",
             "WinForms",
             "Blazor",
-            "MySQL RDBS",
+            "MySQL RDBMS",
             "BCrypt",
         ],
 
@@ -77,7 +77,7 @@ export const projects: Project[] = [
         border: "tl-clip-y bl-clip l-rect-y border",
 
         overview:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Integer tincidunt, justo vitae tincidunt elementum, lorem ipsum tristique lectus, vitae feugiat sapien libero at erat.Donec vel neque vitae justo consequat sollicitudin.Aliquam erat volutpat.Cras interdum, massa vitae posuere tincidunt, augue neque faucibus nisl, vitae malesuada lectus neque sed erat",
+            "A responsive weather application that allows users to search for weather information based on a location. The application integrates the OpenWeather API to retrieve current weather conditions and presents the data through a simple, responsive interface. It was built to practice working with external APIs, asynchronous JavaScript, and responsive web design.",
 
         technologies: [
             "JavaScript",
@@ -115,7 +115,7 @@ export const projects: Project[] = [
         border: "tl-clip bl-rect l-rect border",
 
         overview:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Integer tincidunt, justo vitae tincidunt elementum, lorem ipsum tristique lectus, vitae feugiat sapien libero at erat.Donec vel neque vitae justo consequat sollicitudin.Aliquam erat volutpat.Cras interdum, massa vitae posuere tincidunt, augue neque faucibus nisl, vitae malesuada lectus neque sed erat",
+            "A full-stack birthday calendar designed to help users organize and keep track of important birthdays. Users can create, view, update, and delete birthday entries while browsing upcoming birthdays through a responsive calendar interface. The application also includes custom themes and persistent data storage, combining a React frontend with a Node.js and Supabase backend.",
 
         technologies: [
             "Express.js",

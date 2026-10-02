@@ -9,7 +9,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
   id="contact"
   class="relative mx-auto min-h-[90vh] w-19/20
     overflow-hidden
-    pt-12 pb-18 pl-6"
+    pt-12 pb-18 pl-6 text-shadow-lg/30"
 >
   <div
     class="pointer-events-none absolute bottom-6 left-2 w-px bg-(--primary) h-full"
@@ -77,7 +77,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
   <div
     class="relative z-10 grid items-start gap-6
       lg:grid-cols-[minmax(12rem,0.75fr)_minmax(24rem,2fr)]
-      2xl:grid-cols-[minmax(16rem,0.8fr)_minmax(32rem,2fr)]"
+      2xl:grid-cols-[minmax(16rem,0.8fr)_minmax(32rem,2fr)] drop-shadow-md"
   >
     <!-- Contact information -->
     <div class="grid min-w-0 gap-3 uppercase">
@@ -130,8 +130,10 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
       />
 
       <form
-        action="#"
+        id="contact-form"
+        action="mailto:akshaansingh.2018@gmail.com"
         method="POST"
+        enctype="text/plain"
         class="min-w-0
       border border-(--primary)/60
       bg-(--grid)/40
@@ -244,6 +246,13 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
           border-t border-(--primary)/40
           pt-4"
           >
+            <p
+              id="contact-form-status"
+              class="sr-only"
+              role="status"
+              aria-live="polite"
+            ></p>
+
             <span
               class="hidden text-lg font-bold
             tracking-widest text-(--decor)
@@ -259,6 +268,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
             bg-(--secondary)/90
             px-8 py-1
             text-lg font-extrabold
+            text-shadow-md/20
             text-black
             transition-colors
             hover:bg-(--secondary)
@@ -267,7 +277,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
             focus:ring-(--secondary)
             [clip-path:polygon(0%_0%,90%_0%,100%_100%,0%_100%)]"
             >
-              SEND //
+              SEND -&gt;
             </button>
           </div>
         </div>
@@ -275,6 +285,41 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
     </div>
   </div>
 </div>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>("#contact-form");
+  const contactFormStatus = document.querySelector<HTMLElement>(
+    "#contact-form-status",
+  );
+
+  contactForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const subject = String(formData.get("subject") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Subject: ${subject}`,
+      "",
+      message,
+    ].join("\n");
+    const mailtoUrl = new URL("mailto:akshaansingh.2018@gmail.com");
+
+    mailtoUrl.searchParams.set("subject", `Portfolio contact: ${subject}`);
+    mailtoUrl.searchParams.set("body", body);
+
+    if (contactFormStatus) {
+      contactFormStatus.textContent =
+        "Your email app should open with the message ready to send.";
+    }
+
+    window.location.href = mailtoUrl.toString();
+  });
+</script>
 
 <style>
   h2 {

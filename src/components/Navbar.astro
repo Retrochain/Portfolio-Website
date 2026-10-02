@@ -5,70 +5,90 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 <div id="site-navbar">
   <Astronav closeOnClick>
     <div class="fixed right-4 top-2 z-70 flex justify-end px-3 py-2 md:hidden">
-      <div>
+      <div
+        data-augmented-ui="tl-clip br-clip border"
+        class="navbar-toggle flex h-12 w-12 items-center justify-center bg-[#08050d]"
+      >
         <MenuIcon class="h-7 w-7 text-(--secondary)" />
       </div>
     </div>
     <MenuItems
-      class="hidden fixed top-0 left-0 z-60 min-h-screen w-full items-center justify-center
-       bg-black/60 backdrop-blur-md md:text-[1rem] lg:text-(length:--font-size-nav) font-semibold
-      text-shadow-md md:flex md:min-h-0 md:bg-transparent md:backdrop-blur-none"
+      class="hidden fixed inset-0 z-60 min-h-dvh w-full items-center justify-center
+       bg-black/65 backdrop-blur-md md:inset-x-0 md:top-0 md:bottom-auto md:z-60
+       md:min-h-0 md:items-start md:justify-center md:bg-transparent md:backdrop-blur-none
+       md:text-[1rem] lg:text-(length:--font-size-nav) font-semibold text-shadow-md md:flex"
     >
-      <ul
-        class="flex w-full flex-col items-center justify-center gap-1 px-4 py-6 md:flex-row md:gap-x-2 md:gap-y-1 md:py-3"
+      <div
+        data-augmented-ui="bl-clip br-clip-y border"
+        class="navbar-panel w-[calc(100%-2rem)] max-w-xl bg-transparent md:w-max md:max-w-none md:bg-[#08050d]"
       >
-        <li><a href="#home">//HOME</a></li>
-        <li><a href="#projects">//PROJECTS</a></li>
-        <li><a href="#about">//ABOUT</a></li>
-        <li><a href="#skills">//SKILLS</a></li>
-        <li><a href="#contact">//CONTACT</a></li>
-      </ul>
+        <ul
+          class="flex w-full flex-col items-center justify-center gap-3 px-6 py-8 md:w-max md:flex-row md:flex-nowrap md:gap-x-6 md:px-8 md:py-3"
+        >
+          <li class="whitespace-nowrap"><a href="#home">//HOME</a></li>
+          <li class="whitespace-nowrap"><a href="#projects">//PROJECTS</a></li>
+          <li class="whitespace-nowrap"><a href="#about">//ABOUT</a></li>
+          <li class="whitespace-nowrap"><a href="#skills">//SKILLS</a></li>
+          <li class="whitespace-nowrap"><a href="#contact">//CONTACT</a></li>
+        </ul>
+      </div>
     </MenuItems>
   </Astronav>
 </div>
 
 <script>
-  const links = Array.from(
-    document.querySelectorAll<HTMLAnchorElement>(".astronav-items a"),
-  );
+  const links = [
+    ...document.querySelectorAll<HTMLAnchorElement>(".astronav-items a"),
+  ];
+
   const sections = links
     .map((link) => document.querySelector(link.hash))
     .filter((section): section is Element => section !== null);
 
-  const setActiveLink = (sectionId: string) => {
+  const setActive = (id: string) => {
     links.forEach((link) => {
-      const isActive = link.hash === `#${sectionId}`;
-      link.classList.toggle("active", isActive);
-      if (isActive) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
-      }
+      const active = link.hash === `#${id}`;
+
+      link.classList.toggle("active", active);
+
+      if (active) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
     });
   };
 
-  setActiveLink(sections[0]?.id ?? "");
+  setActive(sections[0]?.id ?? "");
 
   const observer = new IntersectionObserver(
     (entries) => {
-      const visibleSection = entries
+      const visible = entries
         .filter((entry) => entry.isIntersecting)
-        .sort(
-          (first, second) =>
-            first.boundingClientRect.top - second.boundingClientRect.top,
-        )[0];
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
 
-      if (visibleSection) {
-        setActiveLink(visibleSection.target.id);
-      }
+      if (visible) setActive(visible.target.id);
     },
-    { rootMargin: "-20% 0px -60% 0px", threshold: 0 },
+    { rootMargin: "-20% 0px -60% 0px" },
   );
 
   sections.forEach((section) => observer.observe(section));
 </script>
 
 <style>
+  .navbar-panel {
+    --aug-border-all: 2px;
+    --aug-border-bg: var(--secondary);
+  }
+
+  @media (max-width: 767px) {
+    .navbar-panel {
+      --aug-border: 0px;
+    }
+  }
+
+  .navbar-toggle {
+    --aug-border-all: 1px;
+    --aug-border-bg: var(--secondary);
+  }
+
   nav {
     font-family: var(--font-main);
   }

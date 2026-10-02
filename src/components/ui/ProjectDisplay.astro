@@ -11,7 +11,7 @@ const { project } = Astro.props;
 const { title, img, gif, color, border } = project;
 ---
 
-<div class="project-display min-w-0" style={`--display-color: ${color}`}>
+<div class="project-display min-w-0 pb-4" style={`--display-color: ${color}`}>
   <DisplayGrid {color} {border}>
     <!-- Project image -->
     <button
@@ -47,7 +47,7 @@ const { title, img, gif, color, border } = project;
         border border-(--display-color)/60
         bg-(--secondary)/90
         px-2
-        text-center text-xl font-extrabold text-black
+        text-center text-xl font-extrabold text-black text-shadow-md/20
         hover:border-(--display-color)/70
         hover:bg-(--secondary)
         sm:text-lg"

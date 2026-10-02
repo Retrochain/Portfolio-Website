@@ -26,7 +26,6 @@ const {
   duration,
 } = project;
 
-const underscoredTitle = title.replace(/\s+/g, "_");
 const modalId = `project-modal-${project.id}`;
 const titleId = `${modalId}-title`;
 ---
@@ -97,7 +96,7 @@ const titleId = `${modalId}-title`;
             sm:text-4xl
             lg:text-5xl"
         >
-          0{number}/{underscoredTitle}
+          0{number}/{title}
         </h3>
 
         <!-- Image -->
