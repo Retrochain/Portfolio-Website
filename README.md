@@ -6,6 +6,17 @@ npm create astro@latest -- --template minimal
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
+## Contact form on Cloudflare Pages
+
+The contact form uses the Pages Function in `functions/api/contact.ts` to send messages through Resend. Deploy the project as a Cloudflare Pages site with build command `npm run build` and output directory `dist`.
+
+In the Pages project settings, add these runtime variables:
+
+- `RESEND_API_KEY` — a Resend API key, stored as a secret.
+- `RESEND_FROM_EMAIL` — a sender address on a domain verified in Resend, for example `Portfolio Contact <contact@your-domain.com>`.
+
+The function delivers submissions to `akshaansingh.2018@gmail.com` and sets the submitter's address as the reply-to. For local Pages Function testing, put the same values in a root `.dev.vars` file (do not commit it), then run `npm run build` and `npx wrangler pages dev dist`.
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:

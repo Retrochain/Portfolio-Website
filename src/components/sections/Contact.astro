@@ -153,6 +153,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
                 type="text"
                 name="name"
                 autocomplete="name"
+                maxlength="100"
                 required
                 placeholder="ENTER YOUR NAME"
                 class="min-w-0 w-full
@@ -178,6 +179,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
                 type="email"
                 name="email"
                 autocomplete="email"
+                maxlength="254"
                 required
                 placeholder="ENTER YOUR EMAIL"
                 class="min-w-0 w-full
@@ -202,6 +204,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
             <input
               type="text"
               name="subject"
+              maxlength="150"
               required
               placeholder="ENTER MESSAGE SUBJECT"
               class="min-w-0 w-full
@@ -225,6 +228,7 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
             <textarea
               name="message"
               rows="8"
+              maxlength="5000"
               required
               placeholder="ENTER YOUR MESSAGE"
               class="min-h-48 min-w-0 w-full resize-y
@@ -239,9 +243,15 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
             ></textarea>
           </label>
 
-          <!-- Cloudflare Turnstile -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFMWj-g_P3z8UKke">
-          </div>
+          <label class="sr-only" aria-hidden="true">
+            Leave this field empty
+            <input
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </label>
 
           <!-- Submit -->
           <div
@@ -251,12 +261,18 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
           >
             <p
               id="contact-form-status"
-              class="text-lg font-bold tracking-widest text-(--decor)"
+              class="sr-only"
               role="status"
               aria-live="polite"
+            ></p>
+
+            <span
+              class="hidden text-lg font-bold
+            tracking-widest text-(--decor)
+            sm:block"
             >
               //TRANSMISSION_READY
-            </p>
+            </span>
 
             <button
               type="submit"
@@ -284,17 +300,12 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
 </div>
 
 <script>
-  type ContactResponse =
-    | {
-        success: true;
-      }
-    | {
-        success?: false;
-        error: string;
-      };
+  type ContactResponse = {
+    success?: boolean;
+    error?: string;
+  };
 
   const contactForm = document.querySelector<HTMLFormElement>("#contact-form");
-
   const contactFormStatus = document.querySelector<HTMLElement>(
     "#contact-form-status",
   );
@@ -302,50 +313,45 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
   contactForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (!contactFormStatus) return;
-
-    contactFormStatus.classList.remove("sr-only");
-    contactFormStatus.textContent = "//TRANSMITTING...";
-
     const submitButton = contactForm.querySelector<HTMLButtonElement>(
       'button[type="submit"]',
     );
+    const originalButtonText = submitButton?.textContent ?? null;
 
+    if (contactFormStatus) {
+      contactFormStatus.classList.remove("sr-only");
+      contactFormStatus.textContent = "//TRANSMITTING...";
+    }
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = "SENDING...";
     }
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(contactForm.action, {
         method: "POST",
         body: new FormData(contactForm),
       });
-
       const result = (await response.json()) as ContactResponse;
 
-      if (!response.ok) {
-        throw new Error(
-          "error" in result ? result.error : "Unable to send message.",
-        );
+      if (!response.ok || !result.success) {
+        throw new Error(result.error ?? "Unable to send your message.");
       }
-
-      contactFormStatus.textContent = "//TRANSMISSION_SUCCESS";
 
       contactForm.reset();
-
-      if (window.turnstile) {
-        window.turnstile.reset();
+      if (contactFormStatus) {
+        contactFormStatus.textContent = "//TRANSMISSION_SUCCESS";
       }
     } catch (error) {
-      console.error(error);
-
-      contactFormStatus.textContent =
-        "//TRANSMISSION_FAILED — PLEASE TRY AGAIN";
+      console.error("Contact form submission failed", error);
+      if (contactFormStatus) {
+        contactFormStatus.textContent =
+          "//TRANSMISSION_FAILED — PLEASE TRY AGAIN";
+      }
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = "SEND →";
+        submitButton.textContent = originalButtonText;
       }
     }
   });

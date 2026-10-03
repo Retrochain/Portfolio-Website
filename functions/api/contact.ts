@@ -1,151 +1,117 @@
-interface Env {
-    TURNSTILE_SECRET_KEY: string;
-    RESEND_API_KEY: string;
+interface ContactEnv {
+  RESEND_API_KEY?: string;
+  RESEND_FROM_EMAIL?: string;
 }
 
-interface TurnstileResponse {
-    success: boolean;
-    "error-codes"?: string[];
+interface ContactForm {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  website: string;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-    try {
-        const formData = await context.request.formData();
+interface PagesFunctionContext {
+  request: Request;
+  env: ContactEnv;
+}
 
-        const name = String(formData.get("name") ?? "").trim();
-        const email = String(formData.get("email") ?? "").trim();
-        const subject = String(formData.get("subject") ?? "").trim();
-        const message = String(formData.get("message") ?? "").trim();
+const recipient = "akshaansingh.2018@gmail.com";
 
-        const turnstileToken = String(
-            formData.get("cf-turnstile-response") ?? "",
-        );
+function jsonResponse(body: object, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": "no-store",
+    },
+  });
+}
 
-        // -------------------------
-        // Validate fields
-        // -------------------------
+function readField(formData: FormData, name: string): string {
+  const value = formData.get(name);
+  return typeof value === "string" ? value.trim() : "";
+}
 
-        if (!name || !email || !subject || !message) {
-            return Response.json(
-                { error: "Please complete all fields." },
-                { status: 400 },
-            );
-        }
+export const onRequestPost = async ({
+  request,
+  env,
+}: PagesFunctionContext): Promise<Response> => {
+  if (!env.RESEND_API_KEY || !env.RESEND_FROM_EMAIL) {
+    console.error("Contact form requires RESEND_API_KEY and RESEND_FROM_EMAIL.");
+    return jsonResponse({ error: "The contact form is not configured." }, 503);
+  }
 
-        if (name.length > 100) {
-            return Response.json(
-                { error: "Name is too long." },
-                { status: 400 },
-            );
-        }
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return jsonResponse({ error: "Invalid form submission." }, 400);
+  }
 
-        if (subject.length > 200) {
-            return Response.json(
-                { error: "Subject is too long." },
-                { status: 400 },
-            );
-        }
+  const values: ContactForm = {
+    name: readField(formData, "name"),
+    email: readField(formData, "email"),
+    subject: readField(formData, "subject"),
+    message: readField(formData, "message"),
+    website: readField(formData, "website"),
+  };
 
-        if (message.length > 5000) {
-            return Response.json(
-                { error: "Message is too long." },
-                { status: 400 },
-            );
-        }
+  if (values.website) {
+    return jsonResponse({ success: true });
+  }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (
+    !values.name ||
+    !values.email ||
+    !values.subject ||
+    !values.message ||
+    values.name.length > 100 ||
+    values.email.length > 254 ||
+    values.subject.length > 150 ||
+    values.message.length > 5000 ||
+    !/^[^\s@]+@[^.\s@]+(?:\.[^.\s@]+)+$/.test(values.email) ||
+    /[\r\n]/.test(values.subject)
+  ) {
+    return jsonResponse(
+      { error: "Please check the form fields and try again." },
+      400,
+    );
+  }
 
-        if (!emailRegex.test(email)) {
-            return Response.json(
-                { error: "Please enter a valid email address." },
-                { status: 400 },
-            );
-        }
+  let resendResponse: Response;
+  try {
+    resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        from: env.RESEND_FROM_EMAIL,
+        to: [recipient],
+        reply_to: values.email,
+        subject: `Portfolio contact: ${values.subject}`,
+        text: [
+          `Name: ${values.name}`,
+          `Email: ${values.email}`,
+          "",
+          values.message,
+        ].join("\n"),
+      }),
+    });
+  } catch (error) {
+    console.error("Resend request failed", error);
+    return jsonResponse({ error: "Unable to send your message right now." }, 502);
+  }
 
-        // -------------------------
-        // Verify Turnstile
-        // -------------------------
+  if (!resendResponse.ok) {
+    console.error("Resend rejected contact email", {
+      status: resendResponse.status,
+      response: await resendResponse.text(),
+    });
+    return jsonResponse({ error: "Unable to send your message right now." }, 502);
+  }
 
-        if (!turnstileToken) {
-            return Response.json(
-                { error: "Please complete the verification." },
-                { status: 400 },
-            );
-        }
-
-        const turnstileResponse = await fetch(
-            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    secret: context.env.TURNSTILE_SECRET_KEY,
-                    response: turnstileToken,
-                }),
-            },
-        );
-
-        const turnstileResult =
-            (await turnstileResponse.json()) as TurnstileResponse;
-
-        if (!turnstileResult.success) {
-            return Response.json(
-                { error: "Verification failed. Please try again." },
-                { status: 403 },
-            );
-        }
-
-        // -------------------------
-        // Send email with Resend
-        // -------------------------
-
-        const resendResponse = await fetch(
-            "https://api.resend.com/emails",
-            {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${context.env.RESEND_API_KEY}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    from: "Portfolio Contact <contact@akshaansingh.com>",
-                    to: ["akshaansingh.2018@gmail.com"],
-                    reply_to: email,
-                    subject: `Portfolio contact: ${subject}`,
-                    text: [
-                        `Name: ${name}`,
-                        `Email: ${email}`,
-                        `Subject: ${subject}`,
-                        "",
-                        message,
-                    ].join("\n"),
-                }),
-            },
-        );
-
-        if (!resendResponse.ok) {
-            console.error(
-                "Resend error:",
-                await resendResponse.text(),
-            );
-
-            return Response.json(
-                { error: "Unable to send your message." },
-                { status: 500 },
-            );
-        }
-
-        return Response.json({
-            success: true,
-        });
-    } catch (error) {
-        console.error("Contact form error:", error);
-
-        return Response.json(
-            { error: "Something went wrong." },
-            { status: 500 },
-        );
-    }
+  return jsonResponse({ success: true });
 };
