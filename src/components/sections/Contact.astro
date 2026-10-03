@@ -261,18 +261,12 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
           >
             <p
               id="contact-form-status"
-              class="sr-only"
+              class="text-lg font-bold tracking-widest text-(--decor)"
               role="status"
               aria-live="polite"
-            ></p>
-
-            <span
-              class="hidden text-lg font-bold
-            tracking-widest text-(--decor)
-            sm:block"
             >
               //TRANSMISSION_READY
-            </span>
+            </p>
 
             <button
               type="submit"
@@ -319,7 +313,6 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
     const originalButtonText = submitButton?.textContent ?? null;
 
     if (contactFormStatus) {
-      contactFormStatus.classList.remove("sr-only");
       contactFormStatus.textContent = "//TRANSMITTING...";
     }
     if (submitButton) {

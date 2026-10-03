@@ -91,7 +91,7 @@ export const onRequestPost = async ({
         from: env.RESEND_FROM_EMAIL,
         to: [recipient],
         reply_to: values.email,
-        subject: `Portfolio contact: ${values.subject}`,
+        subject: `Subject: ${values.subject}`,
         text: [
           `Name: ${values.name}`,
           `Email: ${values.email}`,
