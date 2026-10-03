@@ -332,7 +332,20 @@ import Honeycomb from "../stylization/HoneyCombs.astro";
         method: "POST",
         body: new FormData(contactForm),
       });
-      const result = (await response.json()) as ContactResponse;
+      if (!response.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(
+          `Contact service returned an unexpected response (HTTP ${response.status}).`,
+        );
+      }
+
+      let result: ContactResponse;
+      try {
+        result = (await response.json()) as ContactResponse;
+      } catch {
+        throw new Error(
+          `Contact service returned an invalid response (HTTP ${response.status}).`,
+        );
+      }
 
       if (!response.ok || !result.success) {
         throw new Error(result.error ?? "Unable to send your message.");

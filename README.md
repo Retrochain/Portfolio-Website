@@ -6,16 +6,16 @@ npm create astro@latest -- --template minimal
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## Contact form on Cloudflare Pages
+## Cloudflare Worker deployment and contact form
 
-The contact form uses the Pages Function in `functions/api/contact.ts` to send messages through Resend. Deploy the project as a Cloudflare Pages site with build command `npm run build` and output directory `dist`.
+The site is served by the `portfolio-website` Cloudflare Worker configured in `wrangler.jsonc`. It serves the Astro static build from `dist` and handles `POST /api/contact` in `src/worker.ts` using the Resend integration in `functions/api/contact.ts`.
 
-In the Pages project settings, add these runtime variables:
+Add these secrets to the Worker:
 
-- `RESEND_API_KEY` — a Resend API key, stored as a secret.
+- `RESEND_API_KEY` — a Resend API key.
 - `RESEND_FROM_EMAIL` — a sender address on a domain verified in Resend, for example `Portfolio Contact <contact@your-domain.com>`.
 
-The function delivers submissions to `akshaansingh.2018@gmail.com` and sets the submitter's address as the reply-to. For local Pages Function testing, put the same values in a root `.dev.vars` file (do not commit it), then run `npm run build` and `npx wrangler pages dev dist`.
+Add each value with `npx wrangler secret put RESEND_API_KEY` and `npx wrangler secret put RESEND_FROM_EMAIL`, or add them in the Worker settings. The endpoint delivers submissions to `akshaansingh.2018@gmail.com` and sets the submitter's address as the reply-to. Run `npm run deploy` to build the static site and deploy the Worker. For local testing, put both values in a root `.dev.vars` file (do not commit it), then run `npm run build` and `npx wrangler dev`.
 
 ## 🚀 Project Structure
 
